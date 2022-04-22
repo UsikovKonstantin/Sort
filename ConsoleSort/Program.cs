@@ -7,7 +7,11 @@ namespace ConsoleSort
     {
         static void Main(string[] args)
         {
-
+            var arr = Sort.GenerateArrayString(1, 100, 100);
+            foreach (var item in arr)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
