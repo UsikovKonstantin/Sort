@@ -203,7 +203,7 @@ namespace WinFormsSort
             }
             if (int.Parse(Tx_Element_Count.Text) > 10000000)
             {
-                Tx_Element_Count.Text = "10000000";
+                Tx_Element_Count.Text = "10000";
             }
             if (int.Parse(Tx_Element_Count.Text) < 1)
             {
