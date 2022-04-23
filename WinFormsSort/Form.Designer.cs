@@ -162,10 +162,10 @@
             this.Tx_Unsorted.MaxLength = 1073741824;
             this.Tx_Unsorted.Multiline = true;
             this.Tx_Unsorted.Name = "Tx_Unsorted";
+            this.Tx_Unsorted.ReadOnly = true;
             this.Tx_Unsorted.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Tx_Unsorted.Size = new System.Drawing.Size(494, 378);
             this.Tx_Unsorted.TabIndex = 0;
-            this.Tx_Unsorted.TextChanged += new System.EventHandler(this.Tx_Unsorted_TextChanged);
             // 
             // groupBox2
             // 

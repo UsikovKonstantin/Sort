@@ -1,4 +1,4 @@
-using ClassLibrarySort;
+﻿using ClassLibrarySort;
 
 namespace WinFormsSort
 {
@@ -16,11 +16,6 @@ namespace WinFormsSort
         }
 
         private void Tx_Test_Trust_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Tx_Unsorted_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -257,13 +252,13 @@ namespace WinFormsSort
         {
             if (Ch_Str.Checked)
             {
-                Lb_Max.Text = "Max length";
-                Lb_Min.Text = "Min length";
+                Lb_Max.Text = "Максимальная длина";
+                Lb_Min.Text = "Минимальная длина";
             }
             else
             {
-                Lb_Max.Text = "Max value";
-                Lb_Min.Text = "Min value";
+                Lb_Max.Text = "Максимальное значение";
+                Lb_Min.Text = "Минимальное значение";
             }
         }
     }
