@@ -1,5 +1,4 @@
 ﻿using ClassLibrarySort;
-
 namespace WinFormsSort
 {
     public partial class Form : System.Windows.Forms.Form
@@ -12,14 +11,37 @@ namespace WinFormsSort
 
         private void Tx_Test_Count_TextChanged(object sender, EventArgs e)
         {
+            if (Tx_Test_Count.Text == "")
+            {
+                Tx_Test_Count.Text = "1";
+            }
+            try
+            {
+                int.Parse(Tx_Test_Count.Text);
+            }
+            catch (Exception)
+            {
+                string resu = "";
+                for (int i = 0; i < Tx_Test_Count.TextLength; i++)
+                {
+                    if (Tx_Test_Count.Text[i] >= '0' && Tx_Test_Count.Text[i] <= '9')
+                    {
+                        resu += Tx_Test_Count.Text[i];
+                    }
+                }
+                Tx_Test_Count.Text = resu;
+            }
+
+            if (int.Parse(Tx_Test_Count.Text) > 1000)
+            {
+                Tx_Test_Count.Text = "1000";
+            }
+            if (int.Parse(Tx_Test_Count.Text) < 1)
+            {
+                Tx_Test_Count.Text = "1";
+            }
 
         }
-
-        private void Tx_Test_Trust_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Tx_Min_TextChanged(object sender, EventArgs e)
         {
             if (Tx_Min.Text == "")
@@ -86,7 +108,7 @@ namespace WinFormsSort
                     Tx_Min.Text = "1";
                 }
             }
-            
+
         }
 
         private void Tx_Max_TextChanged(object sender, EventArgs e)
@@ -170,7 +192,7 @@ namespace WinFormsSort
             catch (Exception)
             {
                 string resu = "";
-                for (int i = 0; i <Tx_Element_Count.TextLength; i++)
+                for (int i = 0; i < Tx_Element_Count.TextLength; i++)
                 {
                     if (Tx_Element_Count.Text[i] >= '0' && Tx_Element_Count.Text[i] <= '9')
                     {
@@ -260,6 +282,67 @@ namespace WinFormsSort
                 Lb_Max.Text = "Максимальное значение";
                 Lb_Min.Text = "Минимальное значение";
             }
+        }
+        List<(Thread thr, CancellationTokenSource cts)> threads = new();
+        private void Bt_Generate_Click(object sender, EventArgs e)
+        {
+            if (double.Parse(Tx_Min.Text) > double.Parse(Tx_Max.Text))
+            {
+                (Tx_Min.Text, Tx_Max.Text) = (Tx_Max.Text, Tx_Min.Text);
+            }
+            if (Ch_Int.Checked)
+            {
+                var lst = Sort.GenerateArrayInt(int.Parse(Tx_Min.Text), int.Parse(Tx_Max.Text), int.Parse(Tx_Element_Count.Text)).ToList();
+                Tx_Unsorted.Text = Fast_Output(lst);
+            }
+            if (Ch_Long.Checked)
+            {
+                var lst = Sort.GenerateArrayLong(long.Parse(Tx_Min.Text), long.Parse(Tx_Max.Text), long.Parse(Tx_Element_Count.Text)).ToList();
+                Tx_Unsorted.Text = Fast_Output(lst);
+            }
+            if (Ch_Double.Checked)
+            {
+                var lst = Sort.GenerateArrayDouble(double.Parse(Tx_Min.Text), double.Parse(Tx_Max.Text), long.Parse(Tx_Element_Count.Text)).ToList();
+                Tx_Unsorted.Text = Fast_Output(lst);
+            }
+            if (Ch_Str.Checked)
+            {
+                var lst = Sort.GenerateArrayString(int.Parse(Tx_Min.Text), int.Parse(Tx_Max.Text), long.Parse(Tx_Element_Count.Text)).ToList();
+                Tx_Unsorted.Text = Fast_Output(lst);
+            }
+
+        }
+        string Fast_Output<T>(List<T> lst)
+        {
+            string output;
+            long str_len_estimate = 0;
+            for (int i = 0; i < lst.Count; i++)
+            {
+                str_len_estimate += lst[i].ToString().Length;
+            }
+            str_len_estimate += lst.Count - 1;
+            char[] chars = new char[str_len_estimate];
+            long index = 0;
+            for (int i = 0; i < lst.Count; i++)
+            {
+                string number = lst[i].ToString();
+                for (int j = 0; j < number.Length; j++)
+                {
+                    chars[index] = number[j];
+                    index++;
+                }
+                if (i != lst.Count - 1)
+                {
+                    chars[index] = ',';
+                }
+                index++;
+            }
+            output = new string(chars);
+            return output;
+        }
+        private void Bt_Test_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -59,9 +59,7 @@
             this.Bt_Test = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.Tx_Test_Trust = new System.Windows.Forms.TextBox();
             this.Tx_Test_Count = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -492,6 +490,7 @@
             this.Bt_Generate.TabIndex = 0;
             this.Bt_Generate.Text = "Сгенерировать массив";
             this.Bt_Generate.UseVisualStyleBackColor = false;
+            this.Bt_Generate.Click += new System.EventHandler(this.Bt_Generate_Click);
             // 
             // Bt_Test
             // 
@@ -503,6 +502,7 @@
             this.Bt_Test.TabIndex = 1;
             this.Bt_Test.Text = "Начать тестирование";
             this.Bt_Test.UseVisualStyleBackColor = false;
+            this.Bt_Test.Click += new System.EventHandler(this.Bt_Test_Click);
             // 
             // groupBox5
             // 
@@ -520,9 +520,7 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.Tx_Test_Trust, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.Tx_Test_Count, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label6, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.label4, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 19);
@@ -535,15 +533,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(303, 442);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // Tx_Test_Trust
-            // 
-            this.Tx_Test_Trust.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Tx_Test_Trust.Location = new System.Drawing.Point(3, 336);
-            this.Tx_Test_Trust.Name = "Tx_Test_Trust";
-            this.Tx_Test_Trust.Size = new System.Drawing.Size(297, 23);
-            this.Tx_Test_Trust.TabIndex = 4;
-            this.Tx_Test_Trust.TextChanged += new System.EventHandler(this.Tx_Test_Trust_TextChanged);
-            // 
             // Tx_Test_Count
             // 
             this.Tx_Test_Count.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -551,17 +540,8 @@
             this.Tx_Test_Count.Name = "Tx_Test_Count";
             this.Tx_Test_Count.Size = new System.Drawing.Size(297, 23);
             this.Tx_Test_Count.TabIndex = 3;
+            this.Tx_Test_Count.Text = "1";
             this.Tx_Test_Count.TextChanged += new System.EventHandler(this.Tx_Test_Count_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(3, 216);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(297, 117);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Коэффициент доверия";
             // 
             // label4
             // 
@@ -673,9 +653,7 @@
         private TextBox Tx_Min;
         private TextBox Tx_Test_Results;
         private TableLayoutPanel tableLayoutPanel2;
-        private TextBox Tx_Test_Trust;
         private TextBox Tx_Test_Count;
-        private Label label6;
         private Label label4;
     }
 }
