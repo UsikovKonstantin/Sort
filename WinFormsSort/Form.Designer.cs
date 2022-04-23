@@ -52,7 +52,11 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.Tx_Sorted = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.Tx_Test_Results = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.Tx_Test_Result_Quick = new System.Windows.Forms.TextBox();
+            this.Tx_Test_Result_Merge = new System.Windows.Forms.TextBox();
+            this.Tx_Test_Result_Insert = new System.Windows.Forms.TextBox();
+            this.Tx_Test_Result_Bubble = new System.Windows.Forms.TextBox();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.Bt_Generate = new System.Windows.Forms.Button();
@@ -61,6 +65,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.Tx_Test_Count = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.Ch_Ascend = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -94,6 +99,7 @@
             this.splitContainer4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
             this.splitContainer5.Panel1.SuspendLayout();
             this.splitContainer5.Panel2.SuspendLayout();
@@ -180,7 +186,7 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.splitContainer9, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.splitContainer8, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.Ch_Str, 0, 3);
@@ -192,20 +198,20 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 19);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53.84615F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.15385F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5025F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5025F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5025F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5025F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66333F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(494, 205);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // splitContainer9
             // 
             this.splitContainer9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer9.Location = new System.Drawing.Point(3, 176);
+            this.splitContainer9.Location = new System.Drawing.Point(3, 171);
             this.splitContainer9.Name = "splitContainer9";
             // 
             // splitContainer9.Panel1
@@ -215,7 +221,7 @@
             // splitContainer9.Panel2
             // 
             this.splitContainer9.Panel2.Controls.Add(this.Tx_Element_Count);
-            this.splitContainer9.Size = new System.Drawing.Size(488, 26);
+            this.splitContainer9.Size = new System.Drawing.Size(488, 31);
             this.splitContainer9.SplitterDistance = 162;
             this.splitContainer9.TabIndex = 6;
             // 
@@ -242,7 +248,7 @@
             // splitContainer8
             // 
             this.splitContainer8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer8.Location = new System.Drawing.Point(3, 142);
+            this.splitContainer8.Location = new System.Drawing.Point(3, 137);
             this.splitContainer8.Name = "splitContainer8";
             // 
             // splitContainer8.Panel1
@@ -280,9 +286,9 @@
             // 
             this.Ch_Str.AutoSize = true;
             this.Ch_Str.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Ch_Str.Location = new System.Drawing.Point(3, 81);
+            this.Ch_Str.Location = new System.Drawing.Point(3, 78);
             this.Ch_Str.Name = "Ch_Str";
-            this.Ch_Str.Size = new System.Drawing.Size(488, 18);
+            this.Ch_Str.Size = new System.Drawing.Size(488, 19);
             this.Ch_Str.TabIndex = 3;
             this.Ch_Str.Text = "Строки";
             this.Ch_Str.UseVisualStyleBackColor = true;
@@ -292,9 +298,9 @@
             // 
             this.Ch_Double.AutoSize = true;
             this.Ch_Double.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Ch_Double.Location = new System.Drawing.Point(3, 59);
+            this.Ch_Double.Location = new System.Drawing.Point(3, 53);
             this.Ch_Double.Name = "Ch_Double";
-            this.Ch_Double.Size = new System.Drawing.Size(488, 16);
+            this.Ch_Double.Size = new System.Drawing.Size(488, 19);
             this.Ch_Double.TabIndex = 2;
             this.Ch_Double.Text = "Числа типа double";
             this.Ch_Double.UseVisualStyleBackColor = true;
@@ -308,7 +314,7 @@
             this.Ch_Int.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Ch_Int.Location = new System.Drawing.Point(3, 3);
             this.Ch_Int.Name = "Ch_Int";
-            this.Ch_Int.Size = new System.Drawing.Size(488, 24);
+            this.Ch_Int.Size = new System.Drawing.Size(488, 19);
             this.Ch_Int.TabIndex = 0;
             this.Ch_Int.Text = "Числа типа int";
             this.Ch_Int.UseVisualStyleBackColor = true;
@@ -318,9 +324,9 @@
             // 
             this.Ch_Long.AutoSize = true;
             this.Ch_Long.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Ch_Long.Location = new System.Drawing.Point(3, 33);
+            this.Ch_Long.Location = new System.Drawing.Point(3, 28);
             this.Ch_Long.Name = "Ch_Long";
-            this.Ch_Long.Size = new System.Drawing.Size(488, 20);
+            this.Ch_Long.Size = new System.Drawing.Size(488, 19);
             this.Ch_Long.TabIndex = 1;
             this.Ch_Long.Text = "Числа типа long";
             this.Ch_Long.UseVisualStyleBackColor = true;
@@ -329,7 +335,7 @@
             // splitContainer7
             // 
             this.splitContainer7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer7.Location = new System.Drawing.Point(3, 105);
+            this.splitContainer7.Location = new System.Drawing.Point(3, 103);
             this.splitContainer7.Name = "splitContainer7";
             // 
             // splitContainer7.Panel1
@@ -339,7 +345,7 @@
             // splitContainer7.Panel2
             // 
             this.splitContainer7.Panel2.Controls.Add(this.Tx_Min);
-            this.splitContainer7.Size = new System.Drawing.Size(488, 31);
+            this.splitContainer7.Size = new System.Drawing.Size(488, 28);
             this.splitContainer7.SplitterDistance = 162;
             this.splitContainer7.TabIndex = 4;
             // 
@@ -425,7 +431,7 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox4.Controls.Add(this.Tx_Test_Results);
+            this.groupBox4.Controls.Add(this.tableLayoutPanel3);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
@@ -434,15 +440,64 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Результаты тестов";
             // 
-            // Tx_Test_Results
+            // tableLayoutPanel3
             // 
-            this.Tx_Test_Results.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Tx_Test_Results.Location = new System.Drawing.Point(3, 19);
-            this.Tx_Test_Results.Multiline = true;
-            this.Tx_Test_Results.Name = "Tx_Test_Results";
-            this.Tx_Test_Results.ReadOnly = true;
-            this.Tx_Test_Results.Size = new System.Drawing.Size(493, 205);
-            this.Tx_Test_Results.TabIndex = 0;
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.Tx_Test_Result_Quick, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.Tx_Test_Result_Merge, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.Tx_Test_Result_Insert, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.Tx_Test_Result_Bubble, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 19);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(493, 205);
+            this.tableLayoutPanel3.TabIndex = 0;
+            // 
+            // Tx_Test_Result_Quick
+            // 
+            this.Tx_Test_Result_Quick.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tx_Test_Result_Quick.Location = new System.Drawing.Point(3, 156);
+            this.Tx_Test_Result_Quick.Multiline = true;
+            this.Tx_Test_Result_Quick.Name = "Tx_Test_Result_Quick";
+            this.Tx_Test_Result_Quick.ReadOnly = true;
+            this.Tx_Test_Result_Quick.Size = new System.Drawing.Size(487, 46);
+            this.Tx_Test_Result_Quick.TabIndex = 4;
+            // 
+            // Tx_Test_Result_Merge
+            // 
+            this.Tx_Test_Result_Merge.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tx_Test_Result_Merge.Location = new System.Drawing.Point(3, 105);
+            this.Tx_Test_Result_Merge.Multiline = true;
+            this.Tx_Test_Result_Merge.Name = "Tx_Test_Result_Merge";
+            this.Tx_Test_Result_Merge.ReadOnly = true;
+            this.Tx_Test_Result_Merge.Size = new System.Drawing.Size(487, 45);
+            this.Tx_Test_Result_Merge.TabIndex = 3;
+            // 
+            // Tx_Test_Result_Insert
+            // 
+            this.Tx_Test_Result_Insert.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tx_Test_Result_Insert.Location = new System.Drawing.Point(3, 54);
+            this.Tx_Test_Result_Insert.Multiline = true;
+            this.Tx_Test_Result_Insert.Name = "Tx_Test_Result_Insert";
+            this.Tx_Test_Result_Insert.ReadOnly = true;
+            this.Tx_Test_Result_Insert.Size = new System.Drawing.Size(487, 45);
+            this.Tx_Test_Result_Insert.TabIndex = 2;
+            // 
+            // Tx_Test_Result_Bubble
+            // 
+            this.Tx_Test_Result_Bubble.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tx_Test_Result_Bubble.Location = new System.Drawing.Point(3, 3);
+            this.Tx_Test_Result_Bubble.Multiline = true;
+            this.Tx_Test_Result_Bubble.Name = "Tx_Test_Result_Bubble";
+            this.Tx_Test_Result_Bubble.ReadOnly = true;
+            this.Tx_Test_Result_Bubble.Size = new System.Drawing.Size(487, 45);
+            this.Tx_Test_Result_Bubble.TabIndex = 1;
             // 
             // splitContainer5
             // 
@@ -519,24 +574,25 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.Tx_Test_Count, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label4, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.Ch_Ascend, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 19);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.96078F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.03922F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 117F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 108F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(303, 442);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // Tx_Test_Count
             // 
             this.Tx_Test_Count.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Tx_Test_Count.Location = new System.Drawing.Point(3, 115);
+            this.Tx_Test_Count.Location = new System.Drawing.Point(3, 113);
             this.Tx_Test_Count.Name = "Tx_Test_Count";
             this.Tx_Test_Count.Size = new System.Drawing.Size(297, 23);
             this.Tx_Test_Count.TabIndex = 3;
@@ -549,9 +605,22 @@
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Location = new System.Drawing.Point(3, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(297, 112);
+            this.label4.Size = new System.Drawing.Size(297, 110);
             this.label4.TabIndex = 0;
             this.label4.Text = "Количество тестов";
+            // 
+            // Ch_Ascend
+            // 
+            this.Ch_Ascend.AutoSize = true;
+            this.Ch_Ascend.Checked = true;
+            this.Ch_Ascend.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Ch_Ascend.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Ch_Ascend.Location = new System.Drawing.Point(3, 223);
+            this.Ch_Ascend.Name = "Ch_Ascend";
+            this.Ch_Ascend.Size = new System.Drawing.Size(297, 104);
+            this.Ch_Ascend.TabIndex = 4;
+            this.Ch_Ascend.Text = "Сортировать по возрастанию";
+            this.Ch_Ascend.UseVisualStyleBackColor = true;
             // 
             // Form
             // 
@@ -604,7 +673,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.splitContainer5.Panel1.ResumeLayout(false);
             this.splitContainer5.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
@@ -651,9 +721,14 @@
         private SplitContainer splitContainer7;
         private Label Lb_Min;
         private TextBox Tx_Min;
-        private TextBox Tx_Test_Results;
         private TableLayoutPanel tableLayoutPanel2;
         private TextBox Tx_Test_Count;
         private Label label4;
+        private CheckBox Ch_Ascend;
+        private TableLayoutPanel tableLayoutPanel3;
+        private TextBox Tx_Test_Result_Quick;
+        private TextBox Tx_Test_Result_Merge;
+        private TextBox Tx_Test_Result_Insert;
+        private TextBox Tx_Test_Result_Bubble;
     }
 }

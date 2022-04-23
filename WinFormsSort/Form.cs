@@ -168,9 +168,9 @@ namespace WinFormsSort
             }
             else
             {
-                if (int.Parse(Tx_Max.Text) > 1000)
+                if (int.Parse(Tx_Max.Text) > 50)
                 {
-                    Tx_Max.Text = "1000";
+                    Tx_Max.Text = "50";
                 }
                 if (int.Parse(Tx_Max.Text) < 1)
                 {
@@ -201,7 +201,7 @@ namespace WinFormsSort
                 }
                 Tx_Element_Count.Text = resu;
             }
-            if (int.Parse(Tx_Element_Count.Text) > 10000000)
+            if (int.Parse(Tx_Element_Count.Text) > 10000)
             {
                 Tx_Element_Count.Text = "10000";
             }
@@ -346,7 +346,7 @@ namespace WinFormsSort
             List<string> lss = Tx_Unsorted.Text.Split(',').ToList();
             if (Ch_Str.Checked)
             {
-                Make_Sort(lss,tests);
+                Make_Sort(lss, tests);
             }
             if (Ch_Int.Checked)
             {
@@ -356,7 +356,7 @@ namespace WinFormsSort
                 {
                     lst.Add(int.Parse(item));
                 }
-                Make_Sort(lst,tests);
+                Make_Sort(lst, tests);
             }
             if (Ch_Long.Checked)
             {
@@ -366,7 +366,7 @@ namespace WinFormsSort
                 {
                     lst.Add(long.Parse(item));
                 }
-                Make_Sort(lst,tests);
+                Make_Sort(lst, tests);
             }
             if (Ch_Double.Checked)
             {
@@ -376,14 +376,54 @@ namespace WinFormsSort
                 {
                     lst.Add(double.Parse(item));
                 }
-                Make_Sort(lst,tests);
+                Make_Sort(lst, tests);
             }
 
         }
-        void Make_Sort<T>(List<T> lss,int tests)
+        void Make_Sort<T>(List<T> lss, int tests)
         {
             System.Diagnostics.Stopwatch bublw = new(), insew = new(), mergw = new(), quicw = new();
-
+            Thread srqt = new(srq), srmt = new(srm), srit = new(sri), srbt = new(srb);
+            void srq()
+            {
+                var lst = lss.ToArray();
+                Sort.QuickSort(lst, Ch_Ascend.Checked, 0, lst.Length - 1);
+                if (Tx_Sorted.Text == "")
+                {
+                    Invoke(() => Tx_Sorted.Text = Fast_Output(lst.ToList()));
+                }
+            }
+            void srm()
+            {
+                var lst = lss.ToArray();
+                Sort.MergeSort(lst, Ch_Ascend.Checked, 0, lst.Length - 1);
+                if (Tx_Sorted.Text == "")
+                {
+                    Invoke(() => Tx_Sorted.Text = Fast_Output(lst.ToList()));
+                }
+            }
+            void sri()
+            {
+                var lst = lss.ToArray();
+                Sort.InsertSort(lst, Ch_Ascend.Checked);
+                if (Tx_Sorted.Text == "")
+                {
+                    Invoke(() => Tx_Sorted.Text = Fast_Output(lst.ToList()));
+                }
+            }
+            void srb()
+            {
+                var lst = lss.ToArray();
+                Sort.BubbleSort(lst, Ch_Ascend.Checked);
+                if (Tx_Sorted.Text == "")
+                {
+                    Invoke(() => Tx_Sorted.Text = Fast_Output(lst.ToList()));
+                }
+            }
+            srqt.Start();
+            srmt.Start();
+            srit.Start();
+            srbt.Start();
             Thread forbut = new(forbub), forint = new(forins), formet = new(former), forqut = new(forqui);
             forbut.Start();
             forint.Start();
@@ -391,9 +431,9 @@ namespace WinFormsSort
             forqut.Start();
             bool Thr_Is_Run(string name)
             {
-                foreach (var item in threads)
+                for (int i = 0; i < threads.Count; i++)
                 {
-                    if (item.thr.ThreadState == ThreadState.Running && item.thr.Name == name)
+                    if (threads[i].thr.ThreadState == ThreadState.Running && threads[i].thr.Name == name)
                     {
                         return true;
                     }
@@ -402,9 +442,13 @@ namespace WinFormsSort
             }
             void forbub()
             {
-                for (int i = 0; i < tests; i++)
+                int counter = 1;
+                for (int i = 1; i <= tests; i++)
                 {
                     Thread bublt = new(bublf);
+                    bublt.Name = "bublt";
+                    CancellationTokenSource cts = new();
+                    threads.Add((bublt, cts));
                     if (!Thr_Is_Run("bublt"))
                     {
                         bublt.Start();
@@ -412,14 +456,30 @@ namespace WinFormsSort
                     else
                     {
                         i--;
+                        if (i >= 2 && i != counter)
+                        {
+                            counter++;
+                            string output = "";
+                            output += $"Сортировка данного массива методом пузырька в среднем требует {bublw.Elapsed.TotalMilliseconds / i} мс {Environment.NewLine}";
+                            output += "Тест в процессе выполнения";
+                            Invoke(() => Tx_Test_Result_Bubble.Text = output);
+                        }
                     }
                 }
+                string outrut = "";
+                outrut += $"Сортировка данного массива методом пузырька в среднем требует {bublw.Elapsed.TotalMilliseconds / counter} мс {Environment.NewLine}";
+                outrut += "Тест окончен";
+                Invoke(() => Tx_Test_Result_Bubble.Text = outrut);
             }
             void forins()
             {
-                for (int i = 0; i < tests; i++)
+                int counter = 1;
+                for (int i = 1; i <= tests; i++)
                 {
                     Thread inset = new(insef);
+                    inset.Name = "inset";
+                    CancellationTokenSource cts = new();
+                    threads.Add((inset, cts));
                     if (!Thr_Is_Run("inset"))
                     {
                         inset.Start();
@@ -427,14 +487,30 @@ namespace WinFormsSort
                     else
                     {
                         i--;
+                        if (i >= 2 && i != counter)
+                        {
+                            counter++;
+                            string output = "";
+                            output += $"Сортировка данного массива методом вставки в среднем требует {insew.Elapsed.TotalMilliseconds / i} мс {Environment.NewLine}";
+                            output += "Тест в процессе выполнения";
+                            Invoke(() => Tx_Test_Result_Insert.Text = output);
+                        }
                     }
                 }
+                string outrut = "";
+                outrut += $"Сортировка данного массива методом вставки в среднем требует {insew.Elapsed.TotalMilliseconds / counter} мс {Environment.NewLine}";
+                outrut += "Тест окончен";
+                Invoke(() => Tx_Test_Result_Insert.Text = outrut);
             }
             void former()
             {
-                for (int i = 0; i < tests; i++)
+                int counter = 1;
+                for (int i = 1; i <= tests; i++)
                 {
                     Thread mergt = new(mergf);
+                    mergt.Name = "mergt";
+                    CancellationTokenSource cts = new();
+                    threads.Add((mergt, cts));
                     if (!Thr_Is_Run("mergt"))
                     {
                         mergt.Start();
@@ -442,14 +518,30 @@ namespace WinFormsSort
                     else
                     {
                         i--;
+                        if (i >= 2 && i != counter)
+                        {
+                            counter++;
+                            string output = "";
+                            output += $"Сортировка данного массива методом слияния в среднем требует {mergw.Elapsed.TotalMilliseconds / i} мс {Environment.NewLine}";
+                            output += "Тест в процессе выполнения";
+                            Invoke(() => Tx_Test_Result_Merge.Text = output);
+                        }
                     }
                 }
+                string outrut = "";
+                outrut += $"Сортировка данного массива методом слияния в среднем требует {mergw.Elapsed.TotalMilliseconds / counter} мс {Environment.NewLine}";
+                outrut += "Тест окончен";
+                Invoke(() => Tx_Test_Result_Merge.Text = outrut);
             }
             void forqui()
             {
-                for (int i = 0; i < tests; i++)
+                int counter = 1;
+                for (int i = 1; i <= tests; i++)
                 {
                     Thread quict = new(quicf);
+                    quict.Name = "quict";
+                    CancellationTokenSource cts = new();
+                    threads.Add((quict, cts));
                     if (!Thr_Is_Run("quict"))
                     {
                         quict.Start();
@@ -457,34 +549,46 @@ namespace WinFormsSort
                     else
                     {
                         i--;
+                        if (i >= 2 && i != counter)
+                        {
+                            counter++;
+                            string output = "";
+                            output += $"Сортировка данного массива методом быстрой сортировки в среднем требует {quicw.Elapsed.TotalMilliseconds / i} мс {Environment.NewLine}";
+                            output += "Тест в процессе выполнения";
+                            Invoke(() => Tx_Test_Result_Quick.Text = output);
+                        }
                     }
                 }
+                string outrut = "";
+                outrut += $"Сортировка данного массива методом быстрой сортировки в среднем требует {quicw.Elapsed.TotalMilliseconds / counter} мс {Environment.NewLine}";
+                outrut += "Тест окончен";
+                Invoke(() => Tx_Test_Result_Quick.Text = outrut);
             }
             void bublf()
             {
                 bublw.Start();
-                Sort.BubbleSort(lss.ToArray(), true);
+                Sort.BubbleSort(lss.ToArray(), Ch_Ascend.Checked);
                 bublw.Stop();
             }
 
             void insef()
             {
                 insew.Start();
-                Sort.InsertSort(lss.ToArray(), true);
+                Sort.InsertSort(lss.ToArray(), Ch_Ascend.Checked);
                 insew.Stop();
             }
 
             void mergf()
             {
                 mergw.Start();
-                Sort.MergeSort(lss.ToArray(), true,0,lss.Count-1);
+                Sort.MergeSort(lss.ToArray(), Ch_Ascend.Checked, 0, lss.Count - 1);
                 mergw.Stop();
             }
 
             void quicf()
             {
                 quicw.Start();
-                Sort.QuickSort(lss.ToArray(), true,0,lss.Count-1);
+                Sort.QuickSort(lss.ToArray(), Ch_Ascend.Checked, 0, lss.Count - 1);
                 quicw.Stop();
             }
         }
