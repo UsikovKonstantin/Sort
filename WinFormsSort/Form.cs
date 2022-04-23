@@ -342,7 +342,151 @@ namespace WinFormsSort
         }
         private void Bt_Test_Click(object sender, EventArgs e)
         {
+            int tests = int.Parse(Tx_Test_Count.Text);
+            List<string> lss = Tx_Unsorted.Text.Split(',').ToList();
+            if (Ch_Str.Checked)
+            {
+                Make_Sort(lss,tests);
+            }
+            if (Ch_Int.Checked)
+            {
+                List<int> lst = new();
+                lst.Capacity = lss.Count;
+                foreach (var item in lss)
+                {
+                    lst.Add(int.Parse(item));
+                }
+                Make_Sort(lst,tests);
+            }
+            if (Ch_Long.Checked)
+            {
+                List<long> lst = new();
+                lst.Capacity = lss.Count;
+                foreach (var item in lss)
+                {
+                    lst.Add(long.Parse(item));
+                }
+                Make_Sort(lst,tests);
+            }
+            if (Ch_Double.Checked)
+            {
+                List<double> lst = new();
+                lst.Capacity = lss.Count;
+                foreach (var item in lss)
+                {
+                    lst.Add(double.Parse(item));
+                }
+                Make_Sort(lst,tests);
+            }
 
+        }
+        void Make_Sort<T>(List<T> lss,int tests)
+        {
+            System.Diagnostics.Stopwatch bublw = new(), insew = new(), mergw = new(), quicw = new();
+
+            Thread forbut = new(forbub), forint = new(forins), formet = new(former), forqut = new(forqui);
+            forbut.Start();
+            forint.Start();
+            formet.Start();
+            forqut.Start();
+            bool Thr_Is_Run(string name)
+            {
+                foreach (var item in threads)
+                {
+                    if (item.thr.ThreadState == ThreadState.Running && item.thr.Name == name)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            void forbub()
+            {
+                for (int i = 0; i < tests; i++)
+                {
+                    Thread bublt = new(bublf);
+                    if (!Thr_Is_Run("bublt"))
+                    {
+                        bublt.Start();
+                    }
+                    else
+                    {
+                        i--;
+                    }
+                }
+            }
+            void forins()
+            {
+                for (int i = 0; i < tests; i++)
+                {
+                    Thread inset = new(insef);
+                    if (!Thr_Is_Run("inset"))
+                    {
+                        inset.Start();
+                    }
+                    else
+                    {
+                        i--;
+                    }
+                }
+            }
+            void former()
+            {
+                for (int i = 0; i < tests; i++)
+                {
+                    Thread mergt = new(mergf);
+                    if (!Thr_Is_Run("mergt"))
+                    {
+                        mergt.Start();
+                    }
+                    else
+                    {
+                        i--;
+                    }
+                }
+            }
+            void forqui()
+            {
+                for (int i = 0; i < tests; i++)
+                {
+                    Thread quict = new(quicf);
+                    if (!Thr_Is_Run("quict"))
+                    {
+                        quict.Start();
+                    }
+                    else
+                    {
+                        i--;
+                    }
+                }
+            }
+            void bublf()
+            {
+                bublw.Start();
+                Sort.BubbleSort(lss.ToArray(), true);
+                bublw.Stop();
+            }
+
+            void insef()
+            {
+                insew.Start();
+                Sort.InsertSort(lss.ToArray(), true);
+                insew.Stop();
+            }
+
+            void mergf()
+            {
+                mergw.Start();
+                Sort.MergeSort(lss.ToArray(), true,0,lss.Count-1);
+                mergw.Stop();
+            }
+
+            void quicf()
+            {
+                quicw.Start();
+                Sort.QuickSort(lss.ToArray(), true,0,lss.Count-1);
+                quicw.Stop();
+            }
         }
     }
 }
