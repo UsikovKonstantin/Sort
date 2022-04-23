@@ -238,6 +238,7 @@
             this.Tx_Element_Count.Name = "Tx_Element_Count";
             this.Tx_Element_Count.Size = new System.Drawing.Size(322, 23);
             this.Tx_Element_Count.TabIndex = 1;
+            this.Tx_Element_Count.Text = "1";
             this.Tx_Element_Count.TextChanged += new System.EventHandler(this.Tx_Element_Count_TextChanged);
             // 
             // splitContainer8
@@ -274,6 +275,7 @@
             this.Tx_Max.Name = "Tx_Max";
             this.Tx_Max.Size = new System.Drawing.Size(322, 23);
             this.Tx_Max.TabIndex = 1;
+            this.Tx_Max.Text = "1";
             this.Tx_Max.TextChanged += new System.EventHandler(this.Tx_Max_TextChanged);
             // 
             // Ch_Str
@@ -360,6 +362,7 @@
             this.Tx_Min.Name = "Tx_Min";
             this.Tx_Min.Size = new System.Drawing.Size(322, 23);
             this.Tx_Min.TabIndex = 0;
+            this.Tx_Min.Text = "1";
             this.Tx_Min.TextChanged += new System.EventHandler(this.Tx_Min_TextChanged);
             // 
             // splitContainer2
