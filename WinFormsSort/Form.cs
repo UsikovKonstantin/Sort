@@ -11,6 +11,7 @@ namespace WinFormsSort
 
         private void Tx_Test_Count_TextChanged(object sender, EventArgs e)
         {
+            Terminate_all();
             if (Tx_Test_Count.Text == "")
             {
                 Tx_Test_Count.Text = "1";
@@ -44,6 +45,7 @@ namespace WinFormsSort
         }
         private void Tx_Min_TextChanged(object sender, EventArgs e)
         {
+            Terminate_all();
             Tx_Unsorted.Text = "";
             Tx_Sorted.Text = "";
             Bt_Test.Enabled = false;
@@ -174,6 +176,7 @@ namespace WinFormsSort
 
         private void Tx_Max_TextChanged(object sender, EventArgs e)
         {
+            Terminate_all();
             Tx_Unsorted.Text = "";
             Tx_Sorted.Text = "";
             Bt_Test.Enabled = false;
@@ -303,6 +306,7 @@ namespace WinFormsSort
 
         private void Tx_Element_Count_TextChanged(object sender, EventArgs e)
         {
+            Terminate_all();
             Tx_Unsorted.Text = "";
             Tx_Sorted.Text = "";
             Bt_Test.Enabled = false;
@@ -338,6 +342,7 @@ namespace WinFormsSort
 
         private void Ch_Int_CheckedChanged(object sender, EventArgs e)
         {
+            Terminate_all();
             Tx_Unsorted.Text = "";
             Tx_Sorted.Text = "";
             Bt_Test.Enabled = false;
@@ -358,6 +363,7 @@ namespace WinFormsSort
 
         private void Ch_Long_CheckedChanged(object sender, EventArgs e)
         {
+            Terminate_all();
             Tx_Unsorted.Text = "";
             Tx_Sorted.Text = "";
             Bt_Test.Enabled = false;
@@ -378,6 +384,7 @@ namespace WinFormsSort
 
         private void Ch_Double_CheckedChanged(object sender, EventArgs e)
         {
+            Terminate_all();
             Tx_Unsorted.Text = "";
             Tx_Sorted.Text = "";
             Bt_Test.Enabled = false;
@@ -398,6 +405,7 @@ namespace WinFormsSort
 
         private void Ch_Str_CheckedChanged(object sender, EventArgs e)
         {
+            Terminate_all();
             Tx_Unsorted.Text = "";
             Tx_Sorted.Text = "";
             Bt_Test.Enabled = false;
@@ -431,6 +439,8 @@ namespace WinFormsSort
         List<(Thread thr, CancellationTokenSource cts)> threads = new();
         private void Bt_Generate_Click(object sender, EventArgs e)
         {
+            Terminate_all();
+            Tx_Sorted.Text = "";
             Bt_Test.Enabled=true;
             if (double.Parse(Tx_Min.Text) > double.Parse(Tx_Max.Text))
             {
@@ -488,6 +498,7 @@ namespace WinFormsSort
         }
         private void Bt_Test_Click(object sender, EventArgs e)
         {
+            Terminate_all();
             Tx_Sorted.Text = "";
             int tests = int.Parse(Tx_Test_Count.Text);
             List<string> lss = Tx_Unsorted.Text.Split(',').ToList();
@@ -526,6 +537,22 @@ namespace WinFormsSort
                 Make_Sort(lst, tests);
             }
 
+        }
+        void Terminate_all()
+        {
+            foreach (var item in threads)
+            {
+                if (item.thr.Name == "For")
+                {
+                    item.cts.Cancel();
+                }
+            }
+            Thread.Sleep(10);
+            for (int i = threads.Count-1; i >= 0; i--)
+            {
+                threads[i].cts.Cancel();
+                threads.RemoveAt(i);
+            }
         }
         void Make_Sort<T>(List<T> lss, int tests)
         {
@@ -637,7 +664,7 @@ namespace WinFormsSort
                         {
                             counter++;
                             string output = "";
-                            output += $"Сортировка данного массива методом пузырька в среднем требует {bublw.Elapsed.TotalMilliseconds / i} мс {Environment.NewLine}";
+                            output += $"Сортировка данного массива методом пузырька в среднем требует {Math.Round(bublw.Elapsed.TotalMilliseconds / i,3)} мс {Environment.NewLine}";
                             output += "Тест в процессе выполнения";
                             Invoke(() => Tx_Test_Result_Bubble.Text = output);
                         }
@@ -657,7 +684,7 @@ namespace WinFormsSort
                     }
                 }
                 string outrut = "";
-                outrut += $"Сортировка данного массива методом пузырька в среднем требует {bublw.Elapsed.TotalMilliseconds / counter} мс {Environment.NewLine}";
+                outrut += $"Сортировка данного массива методом пузырька в среднем требует {Math.Round(bublw.Elapsed.TotalMilliseconds / counter, 3)} мс {Environment.NewLine}";
                 outrut += "Тест окончен";
                 Invoke(() => Tx_Test_Result_Bubble.Text = outrut);
             }
@@ -677,7 +704,7 @@ namespace WinFormsSort
                         {
                             counter++;
                             string output = "";
-                            output += $"Сортировка данного массива методом вставки в среднем требует {insew.Elapsed.TotalMilliseconds / i} мс {Environment.NewLine}";
+                            output += $"Сортировка данного массива методом вставки в среднем требует {Math.Round(insew.Elapsed.TotalMilliseconds / i,3)} мс {Environment.NewLine}";
                             output += "Тест в процессе выполнения";
                             Invoke(() => Tx_Test_Result_Insert.Text = output);
                         }
@@ -697,7 +724,7 @@ namespace WinFormsSort
                     }
                 }
                 string outrut = "";
-                outrut += $"Сортировка данного массива методом вставки в среднем требует {insew.Elapsed.TotalMilliseconds / counter} мс {Environment.NewLine}";
+                outrut += $"Сортировка данного массива методом вставки в среднем требует {Math.Round(insew.Elapsed.TotalMilliseconds / counter,3)} мс {Environment.NewLine}";
                 outrut += "Тест окончен";
                 Invoke(() => Tx_Test_Result_Insert.Text = outrut);
             }
@@ -717,7 +744,7 @@ namespace WinFormsSort
                         {
                             counter++;
                             string output = "";
-                            output += $"Сортировка данного массива методом слияния в среднем требует {mergw.Elapsed.TotalMilliseconds / i} мс {Environment.NewLine}";
+                            output += $"Сортировка данного массива методом слияния в среднем требует {Math.Round(mergw.Elapsed.TotalMilliseconds / i,3)} мс {Environment.NewLine}";
                             output += "Тест в процессе выполнения";
                             Invoke(() => Tx_Test_Result_Merge.Text = output);
                         }
@@ -737,7 +764,7 @@ namespace WinFormsSort
                     }
                 }
                 string outrut = "";
-                outrut += $"Сортировка данного массива методом слияния в среднем требует {mergw.Elapsed.TotalMilliseconds / counter} мс {Environment.NewLine}";
+                outrut += $"Сортировка данного массива методом слияния в среднем требует {Math.Round(mergw.Elapsed.TotalMilliseconds / counter,3)} мс {Environment.NewLine}";
                 outrut += "Тест окончен";
                 Invoke(() => Tx_Test_Result_Merge.Text = outrut);
             }
@@ -757,7 +784,7 @@ namespace WinFormsSort
                         {
                             counter++;
                             string output = "";
-                            output += $"Сортировка данного массива методом быстрой сортировки в среднем требует {quicw.Elapsed.TotalMilliseconds / i} мс {Environment.NewLine}";
+                            output += $"Сортировка данного массива методом быстрой сортировки в среднем требует {Math.Round(quicw.Elapsed.TotalMilliseconds / i,3)} мс {Environment.NewLine}";
                             output += "Тест в процессе выполнения";
                             Invoke(() => Tx_Test_Result_Quick.Text = output);
                         }
@@ -777,7 +804,7 @@ namespace WinFormsSort
                     }
                 }
                 string outrut = "";
-                outrut += $"Сортировка данного массива методом быстрой сортировки в среднем требует {quicw.Elapsed.TotalMilliseconds / counter} мс {Environment.NewLine}";
+                outrut += $"Сортировка данного массива методом быстрой сортировки в среднем требует {Math.Round(quicw.Elapsed.TotalMilliseconds / counter,3)} мс {Environment.NewLine}";
                 outrut += "Тест окончен";
                 Invoke(() => Tx_Test_Result_Quick.Text = outrut);
             }
@@ -812,6 +839,12 @@ namespace WinFormsSort
                 Sort.QuickSort(lss.ToArray(), Ch_Ascend.Checked, 0, lss.Count - 1,ct);
                 quicw.Stop();
             }
+        }
+
+        private void Ch_Ascend_CheckedChanged(object sender, EventArgs e)
+        {
+            Terminate_all();
+            Tx_Sorted.Text = "";
         }
     }
 }

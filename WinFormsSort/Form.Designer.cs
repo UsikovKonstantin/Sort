@@ -622,6 +622,7 @@
             this.Ch_Ascend.TabIndex = 4;
             this.Ch_Ascend.Text = "Сортировать по возрастанию";
             this.Ch_Ascend.UseVisualStyleBackColor = true;
+            this.Ch_Ascend.CheckedChanged += new System.EventHandler(this.Ch_Ascend_CheckedChanged);
             // 
             // Form
             // 
