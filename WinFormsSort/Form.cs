@@ -438,12 +438,12 @@ namespace WinFormsSort
             }
             if (Ch_Int.Checked)
             {
-                var lst = Sort.GenerateArrayInt(int.Parse(Tx_Min.Text), int.Parse(Tx_Max.Text)+1, int.Parse(Tx_Element_Count.Text)).ToList();
+                var lst = Sort.GenerateArrayInt(int.Parse(Tx_Min.Text), int.Parse(Tx_Max.Text), int.Parse(Tx_Element_Count.Text)).ToList();
                 Tx_Unsorted.Text = Fast_Output(lst);
             }
             if (Ch_Long.Checked)
             {
-                var lst = Sort.GenerateArrayLong(long.Parse(Tx_Min.Text), long.Parse(Tx_Max.Text)+1, long.Parse(Tx_Element_Count.Text)).ToList();
+                var lst = Sort.GenerateArrayLong(long.Parse(Tx_Min.Text), long.Parse(Tx_Max.Text), long.Parse(Tx_Element_Count.Text)).ToList();
                 Tx_Unsorted.Text = Fast_Output(lst);
             }
             if (Ch_Double.Checked)
@@ -453,7 +453,7 @@ namespace WinFormsSort
             }
             if (Ch_Str.Checked)
             {
-                var lst = Sort.GenerateArrayString(int.Parse(Tx_Min.Text), int.Parse(Tx_Max.Text)+1, long.Parse(Tx_Element_Count.Text)).ToList();
+                var lst = Sort.GenerateArrayString(int.Parse(Tx_Min.Text), int.Parse(Tx_Max.Text), long.Parse(Tx_Element_Count.Text)).ToList();
                 Tx_Unsorted.Text = Fast_Output(lst);
             }
 
