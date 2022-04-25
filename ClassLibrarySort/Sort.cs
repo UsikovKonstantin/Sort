@@ -171,7 +171,7 @@
                 int j = a2;
                 for (int k = left; k <= right; k++)
                     if (i <= b1 && j <= b2)
-                        if (ascending ? Compare(M[i - left], M[j - left]) == 1 : Compare(M[i - left], M[j - left]) == -1)
+                        if (ascending ? Compare(M[i - left], M[j - left]) == -1 : Compare(M[i - left], M[j - left]) == 1)
                         {
                             arr[k] = M[i - left];
                             i++;
@@ -196,7 +196,7 @@
             }
             else
                 if (right - left == 1)
-                    if (ascending ? Compare(arr[left], arr[right]) == -1 : Compare(arr[left], arr[right]) == 1)
+                    if (ascending ? Compare(arr[left], arr[right]) == 1 : Compare(arr[left], arr[right]) == -1)
                         (arr[left], arr[right]) = (arr[right], arr[left]);
         }
 
