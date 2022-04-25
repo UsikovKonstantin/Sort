@@ -102,11 +102,15 @@
         /// <typeparam name="T"> тип массива </typeparam>
         /// <param name="arr"> массив для сортировки </param>
         /// <param name="ascending"> если по возрастанию - true, иначе - false </param>
-        public static void BubbleSort<T>(T[] arr, bool ascending)
+        public static void BubbleSort<T>(T[] arr, bool ascending, CancellationToken ct)
         {
             bool swaps;
             for (int i = arr.Length - 1; i > 0; i--)
             {
+                if (ct.IsCancellationRequested)
+                {
+                    return;
+                }
                 swaps = false;
                 for (int j = 0; j < i; j++)
                 {
@@ -129,10 +133,14 @@
         /// <typeparam name="T"> тип массива </typeparam>
         /// <param name="arr"> массив для сортировки </param>
         /// <param name="ascending"> если по возрастанию - true, иначе - false </param>
-        public static void InsertSort<T>(T[] arr, bool ascending)
+        public static void InsertSort<T>(T[] arr, bool ascending, CancellationToken ct)
         {
             for (int i = 1; i < arr.Length; i++)
             {
+                if (ct.IsCancellationRequested)
+                {
+                    return;
+                }
                 int j = i;
                 while (ascending ? Compare(arr[j], arr[j - 1]) == -1 : Compare(arr[j], arr[j - 1]) == 1)
                 {
@@ -154,7 +162,7 @@
         /// <param name="ascending"> если по возрастанию - true, иначе - false </param>
         /// <param name="left"> левая граница сортировки (как правило, 0) </param>
         /// <param name="right"> правая граница сортировки (как правило, длина массива - 1) </param>
-        public static void MergeSort<T>(T[] arr, bool ascending, int left, int right)
+        public static void MergeSort<T>(T[] arr, bool ascending, int left, int right, CancellationToken ct)
         {
             if (right - left > 1)
             {
@@ -162,8 +170,12 @@
                 int b1 = (left + right) / 2;
                 int a2 = (left + right) / 2 + 1;
                 int b2 = right;
-                MergeSort(arr, ascending, a1, b1);
-                MergeSort(arr, ascending, a2, b2);
+                if (ct.IsCancellationRequested)
+                {
+                    return;
+                }
+                MergeSort(arr, ascending, a1, b1, ct);
+                MergeSort(arr, ascending, a2, b2, ct);
                 T[] M = new T[right - left + 1];
                 for (int k = left; k <= right; k++)
                     M[k - left] = arr[k];
@@ -180,24 +192,24 @@
                         {
                             arr[k] = M[j - left];
                             j++;
-                        } 
+                        }
                     else
                         if (i > b1)
-                        {
-                            arr[k] = M[j - left];
-                            j++;
-                        }
-                        else
-                        {
-                            arr[k] = M[i - left];
-                            i++;
-                        }
-                
+                    {
+                        arr[k] = M[j - left];
+                        j++;
+                    }
+                    else
+                    {
+                        arr[k] = M[i - left];
+                        i++;
+                    }
+
             }
             else
                 if (right - left == 1)
-                    if (ascending ? Compare(arr[left], arr[right]) == 1 : Compare(arr[left], arr[right]) == -1)
-                        (arr[left], arr[right]) = (arr[right], arr[left]);
+                if (ascending ? Compare(arr[left], arr[right]) == 1 : Compare(arr[left], arr[right]) == -1)
+                    (arr[left], arr[right]) = (arr[right], arr[left]);
         }
 
         /// <summary>
@@ -208,7 +220,7 @@
         /// <param name="ascending"> если по возрастанию - true, иначе - false </param>
         /// <param name="left"> левая граница сортировки (как правило, 0) </param>
         /// <param name="right"> правая граница сортировки (как правило, длина массива - 1) </param>
-        public static void QuickSort<T>(T[] arr, bool ascending, int left, int right)
+        public static void QuickSort<T>(T[] arr, bool ascending, int left, int right, CancellationToken ct)
         {
             int a = left;
             int b = right;
@@ -227,9 +239,21 @@
                 }
             }
             if (left < b)
-                QuickSort(arr, ascending, left, b);
+            {
+                if (ct.IsCancellationRequested)
+                {
+                    return;
+                }
+                QuickSort(arr, ascending, left, b, ct);
+            }
             if (a < right)
-                QuickSort(arr, ascending, a, right);
+            {
+                if (ct.IsCancellationRequested)
+                {
+                    return;
+                }
+                QuickSort(arr, ascending, a, right, ct);
+            }
         }
 
         /// <summary>
@@ -242,13 +266,13 @@
         {
             if (o1 is string)
                 return string.Compare(o1.ToString(), o2.ToString());
-            else 
+            else
                 if (Convert.ToDouble(o1) < Convert.ToDouble(o2))
-                    return -1;
-                else if (Convert.ToDouble(o1) > Convert.ToDouble(o2))
-                    return 1;
-                else
-                    return 0;
+                return -1;
+            else if (Convert.ToDouble(o1) > Convert.ToDouble(o2))
+                return 1;
+            else
+                return 0;
         }
         #endregion
     }
