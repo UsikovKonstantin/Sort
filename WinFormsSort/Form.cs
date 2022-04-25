@@ -488,6 +488,7 @@ namespace WinFormsSort
         }
         private void Bt_Test_Click(object sender, EventArgs e)
         {
+            Tx_Sorted.Text = "";
             int tests = int.Parse(Tx_Test_Count.Text);
             List<string> lss = Tx_Unsorted.Text.Split(',').ToList();
             if (Ch_Str.Checked)
