@@ -127,7 +127,7 @@ namespace WinFormsSort
                 resu = "";
                 for (int i = 0; i < Tx_Min.TextLength; i++)
                 {
-                    if ((Tx_Min.Text[i] >= '0' && Tx_Min.Text[i] <= '9' && !(Tx_Min.Text[i] == '.')) || !(Tx_Min.Text[i] == ','))
+                    if ((Tx_Min.Text[i] >= '0' && Tx_Min.Text[i] <= '9') || (Tx_Min.Text[i] == '.'))
                     {
                         resu += Tx_Min.Text[i];
                     }
@@ -257,7 +257,7 @@ namespace WinFormsSort
                 resu = "";
                 for (int i = 0; i < Tx_Max.TextLength; i++)
                 {
-                    if ((Tx_Max.Text[i] >= '0' && Tx_Max.Text[i] <= '9' && !(Tx_Max.Text[i] == '.')) || !(Tx_Max.Text[i] == ','))
+                    if ((Tx_Max.Text[i] >= '0' && Tx_Max.Text[i] <= '9') || !(Tx_Max.Text[i] == '.'))
                     {
                         resu += Tx_Max.Text[i];
                     }
