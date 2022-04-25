@@ -660,7 +660,7 @@ namespace WinFormsSort
                     threads.Add((bublt, cts));
                     if (!Thr_Is_Run("bublt"))
                     {
-                        if (i >= 2)
+                        if (i >= 2 && i % (int)(tests/10) == 0)
                         {
                             counter++;
                             string output = "";
@@ -700,7 +700,7 @@ namespace WinFormsSort
                     threads.Add((inset, cts));
                     if (!Thr_Is_Run("inset"))
                     {
-                        if (i >= 2 && i != counter)
+                        if (i >= 2 && i % (int)(tests / 10) == 0)
                         {
                             counter++;
                             string output = "";
@@ -740,7 +740,7 @@ namespace WinFormsSort
                     threads.Add((mergt, cts));
                     if (!Thr_Is_Run("mergt"))
                     {
-                        if (i >= 2 && i != counter)
+                        if (i >= 2 && i % (int)(tests / 10) == 0)
                         {
                             counter++;
                             string output = "";
@@ -780,7 +780,7 @@ namespace WinFormsSort
                     threads.Add((quict, cts));
                     if (!Thr_Is_Run("quict"))
                     {
-                        if (i >= 2 && i != counter)
+                        if (i >= 2 && i % (int)(tests / 10) == 0)
                         {
                             counter++;
                             string output = "";
