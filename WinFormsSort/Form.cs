@@ -44,6 +44,9 @@ namespace WinFormsSort
         }
         private void Tx_Min_TextChanged(object sender, EventArgs e)
         {
+            Tx_Unsorted.Text = "";
+            Tx_Sorted.Text = "";
+            Bt_Test.Enabled = false;
             if (Tx_Min.Text == "")
             {
                 Tx_Min.Text = "1";
@@ -171,6 +174,9 @@ namespace WinFormsSort
 
         private void Tx_Max_TextChanged(object sender, EventArgs e)
         {
+            Tx_Unsorted.Text = "";
+            Tx_Sorted.Text = "";
+            Bt_Test.Enabled = false;
             if (Tx_Max.Text == "")
             {
                 Tx_Max.Text = "1";
@@ -297,6 +303,9 @@ namespace WinFormsSort
 
         private void Tx_Element_Count_TextChanged(object sender, EventArgs e)
         {
+            Tx_Unsorted.Text = "";
+            Tx_Sorted.Text = "";
+            Bt_Test.Enabled = false;
             if (Tx_Element_Count.Text == "")
             {
                 Tx_Element_Count.Text = "1";
@@ -329,6 +338,9 @@ namespace WinFormsSort
 
         private void Ch_Int_CheckedChanged(object sender, EventArgs e)
         {
+            Tx_Unsorted.Text = "";
+            Tx_Sorted.Text = "";
+            Bt_Test.Enabled = false;
             if (Ch_Int.Checked)
             {
                 Ch_Long.Checked = false;
@@ -346,6 +358,9 @@ namespace WinFormsSort
 
         private void Ch_Long_CheckedChanged(object sender, EventArgs e)
         {
+            Tx_Unsorted.Text = "";
+            Tx_Sorted.Text = "";
+            Bt_Test.Enabled = false;
             if (Ch_Long.Checked)
             {
                 Ch_Int.Checked = false;
@@ -363,6 +378,9 @@ namespace WinFormsSort
 
         private void Ch_Double_CheckedChanged(object sender, EventArgs e)
         {
+            Tx_Unsorted.Text = "";
+            Tx_Sorted.Text = "";
+            Bt_Test.Enabled = false;
             if (Ch_Double.Checked)
             {
                 Ch_Long.Checked = false;
@@ -380,6 +398,9 @@ namespace WinFormsSort
 
         private void Ch_Str_CheckedChanged(object sender, EventArgs e)
         {
+            Tx_Unsorted.Text = "";
+            Tx_Sorted.Text = "";
+            Bt_Test.Enabled = false;
             if (Ch_Str.Checked)
             {
                 Ch_Long.Checked = false;
@@ -410,18 +431,19 @@ namespace WinFormsSort
         List<(Thread thr, CancellationTokenSource cts)> threads = new();
         private void Bt_Generate_Click(object sender, EventArgs e)
         {
+            Bt_Test.Enabled=true;
             if (double.Parse(Tx_Min.Text) > double.Parse(Tx_Max.Text))
             {
                 (Tx_Min.Text, Tx_Max.Text) = (Tx_Max.Text, Tx_Min.Text);
             }
             if (Ch_Int.Checked)
             {
-                var lst = Sort.GenerateArrayInt(int.Parse(Tx_Min.Text), int.Parse(Tx_Max.Text), int.Parse(Tx_Element_Count.Text)).ToList();
+                var lst = Sort.GenerateArrayInt(int.Parse(Tx_Min.Text), int.Parse(Tx_Max.Text)+1, int.Parse(Tx_Element_Count.Text)).ToList();
                 Tx_Unsorted.Text = Fast_Output(lst);
             }
             if (Ch_Long.Checked)
             {
-                var lst = Sort.GenerateArrayLong(long.Parse(Tx_Min.Text), long.Parse(Tx_Max.Text), long.Parse(Tx_Element_Count.Text)).ToList();
+                var lst = Sort.GenerateArrayLong(long.Parse(Tx_Min.Text), long.Parse(Tx_Max.Text)+1, long.Parse(Tx_Element_Count.Text)).ToList();
                 Tx_Unsorted.Text = Fast_Output(lst);
             }
             if (Ch_Double.Checked)
@@ -431,7 +453,7 @@ namespace WinFormsSort
             }
             if (Ch_Str.Checked)
             {
-                var lst = Sort.GenerateArrayString(int.Parse(Tx_Min.Text), int.Parse(Tx_Max.Text), long.Parse(Tx_Element_Count.Text)).ToList();
+                var lst = Sort.GenerateArrayString(int.Parse(Tx_Min.Text), int.Parse(Tx_Max.Text)+1, long.Parse(Tx_Element_Count.Text)).ToList();
                 Tx_Unsorted.Text = Fast_Output(lst);
             }
 

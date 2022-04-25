@@ -551,6 +551,7 @@
             // 
             this.Bt_Test.BackColor = System.Drawing.SystemColors.ControlLight;
             this.Bt_Test.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Bt_Test.Enabled = false;
             this.Bt_Test.Location = new System.Drawing.Point(0, 0);
             this.Bt_Test.Name = "Bt_Test";
             this.Bt_Test.Size = new System.Drawing.Size(309, 78);
