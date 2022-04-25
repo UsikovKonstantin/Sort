@@ -553,6 +553,7 @@ namespace WinFormsSort
                 threads[i].cts.Cancel();
                 threads.RemoveAt(i);
             }
+            threads.Clear();
         }
         void Make_Sort<T>(List<T> lss, int tests)
         {
@@ -651,18 +652,17 @@ namespace WinFormsSort
             void forbub(object cto)
             {
                 CancellationToken ct = (CancellationToken)cto;
-                int counter = 1;
                 for (int i = 1; i <= tests; i++)
                 {
-                    Thread bublt = new(bublf);
-                    bublt.Name = "bublt";
-                    CancellationTokenSource cts = new();
-                    threads.Add((bublt, cts));
+                    
                     if (!Thr_Is_Run("bublt"))
                     {
-                        if (i >= 2 && i % (int)(tests/10) == 0)
+                        Thread bublt = new(bublf);
+                        bublt.Name = "bublt";
+                        CancellationTokenSource cts = new();
+                        threads.Add((bublt, cts));
+                        if (i >= 2 && i % ((tests / 10) + 1) == 0)
                         {
-                            counter++;
                             string output = "";
                             output += $"Сортировка данного массива методом пузырька в среднем требует {Math.Round(bublw.Elapsed.TotalMilliseconds / i,3)} мс {Environment.NewLine}";
                             output += "Тест в процессе выполнения";
@@ -684,25 +684,24 @@ namespace WinFormsSort
                     }
                 }
                 string outrut = "";
-                outrut += $"Сортировка данного массива методом пузырька в среднем требует {Math.Round(bublw.Elapsed.TotalMilliseconds / counter, 3)} мс {Environment.NewLine}";
+                outrut += $"Сортировка данного массива методом пузырька в среднем требует {Math.Round(bublw.Elapsed.TotalMilliseconds / tests, 3)} мс {Environment.NewLine}";
                 outrut += "Тест окончен";
                 Invoke(() => Tx_Test_Result_Bubble.Text = outrut);
             }
             void forins(object cto)
             {
                 CancellationToken ct = (CancellationToken)cto;
-                int counter = 1;
                 for (int i = 1; i <= tests; i++)
                 {
-                    Thread inset = new(insef);
-                    inset.Name = "inset";
-                    CancellationTokenSource cts = new();
-                    threads.Add((inset, cts));
+                    
                     if (!Thr_Is_Run("inset"))
                     {
-                        if (i >= 2 && i % (int)(tests / 10) == 0)
+                        Thread inset = new(insef);
+                        inset.Name = "inset";
+                        CancellationTokenSource cts = new();
+                        threads.Add((inset, cts));
+                        if (i >= 2 && i % ((tests / 10) + 1) == 0)
                         {
-                            counter++;
                             string output = "";
                             output += $"Сортировка данного массива методом вставки в среднем требует {Math.Round(insew.Elapsed.TotalMilliseconds / i,3)} мс {Environment.NewLine}";
                             output += "Тест в процессе выполнения";
@@ -724,25 +723,24 @@ namespace WinFormsSort
                     }
                 }
                 string outrut = "";
-                outrut += $"Сортировка данного массива методом вставки в среднем требует {Math.Round(insew.Elapsed.TotalMilliseconds / counter,3)} мс {Environment.NewLine}";
+                outrut += $"Сортировка данного массива методом вставки в среднем требует {Math.Round(insew.Elapsed.TotalMilliseconds / tests,3)} мс {Environment.NewLine}";
                 outrut += "Тест окончен";
                 Invoke(() => Tx_Test_Result_Insert.Text = outrut);
             }
             void former(object cto)
             {
                 CancellationToken ct = (CancellationToken)cto;
-                int counter = 1;
                 for (int i = 1; i <= tests; i++)
                 {
-                    Thread mergt = new(mergf);
-                    mergt.Name = "mergt";
-                    CancellationTokenSource cts = new();
-                    threads.Add((mergt, cts));
+                    
                     if (!Thr_Is_Run("mergt"))
                     {
-                        if (i >= 2 && i % (int)(tests / 10) == 0)
+                        Thread mergt = new(mergf);
+                        mergt.Name = "mergt";
+                        CancellationTokenSource cts = new();
+                        threads.Add((mergt, cts));
+                        if (i >= 2 && i % ((tests / 10) + 1) == 0)
                         {
-                            counter++;
                             string output = "";
                             output += $"Сортировка данного массива методом слияния в среднем требует {Math.Round(mergw.Elapsed.TotalMilliseconds / i,3)} мс {Environment.NewLine}";
                             output += "Тест в процессе выполнения";
@@ -764,25 +762,24 @@ namespace WinFormsSort
                     }
                 }
                 string outrut = "";
-                outrut += $"Сортировка данного массива методом слияния в среднем требует {Math.Round(mergw.Elapsed.TotalMilliseconds / counter,3)} мс {Environment.NewLine}";
+                outrut += $"Сортировка данного массива методом слияния в среднем требует {Math.Round(mergw.Elapsed.TotalMilliseconds / tests,3)} мс {Environment.NewLine}";
                 outrut += "Тест окончен";
                 Invoke(() => Tx_Test_Result_Merge.Text = outrut);
             }
             void forqui(object cto)
             {
                 CancellationToken ct = (CancellationToken)cto;
-                int counter = 1;
                 for (int i = 1; i <= tests; i++)
                 {
-                    Thread quict = new(quicf);
-                    quict.Name = "quict";
-                    CancellationTokenSource cts = new();
-                    threads.Add((quict, cts));
+                    
                     if (!Thr_Is_Run("quict"))
                     {
-                        if (i >= 2 && i % (int)(tests / 10) == 0)
+                        Thread quict = new(quicf);
+                        quict.Name = "quict";
+                        CancellationTokenSource cts = new();
+                        threads.Add((quict, cts));
+                        if (i >= 2 && i % ((tests/10)+1) == 0)
                         {
-                            counter++;
                             string output = "";
                             output += $"Сортировка данного массива методом быстрой сортировки в среднем требует {Math.Round(quicw.Elapsed.TotalMilliseconds / i,3)} мс {Environment.NewLine}";
                             output += "Тест в процессе выполнения";
@@ -804,7 +801,7 @@ namespace WinFormsSort
                     }
                 }
                 string outrut = "";
-                outrut += $"Сортировка данного массива методом быстрой сортировки в среднем требует {Math.Round(quicw.Elapsed.TotalMilliseconds / counter,3)} мс {Environment.NewLine}";
+                outrut += $"Сортировка данного массива методом быстрой сортировки в среднем требует {Math.Round(quicw.Elapsed.TotalMilliseconds / tests,3)} мс {Environment.NewLine}";
                 outrut += "Тест окончен";
                 Invoke(() => Tx_Test_Result_Quick.Text = outrut);
             }
