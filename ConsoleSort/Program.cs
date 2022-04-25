@@ -7,7 +7,7 @@ namespace ConsoleSort
     {
         static void Main(string[] args)
         {
-            var arr = Sort.GenerateArrayDouble(1, 10000000, 100);
+            var arr = Sort.GenerateArrayInt(1, 2, 100);
             Sort.QuickSort(arr, false, 0, arr.Length - 1);
             foreach (var item in arr)
             {

@@ -7,7 +7,7 @@
         static string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         /// <summary>
-        /// Генерирует массив из n случайных чисел типа int в диапазоне [min, max).
+        /// Генерирует массив из n случайных чисел типа int в диапазоне [min, max].
         /// </summary>
         /// <param name="min"> минимальное число </param>
         /// <param name="max"> максимальное число </param>
@@ -18,13 +18,13 @@
             int[] res = new int[n];
             for (int i = 0; i < n; i++)
             {
-                res[i] = random.Next(min, max);
+                res[i] = random.Next(min, max + 1);
             }
             return res;
         }
 
         /// <summary>
-        /// Генерирует массив из n случайных чисел типа double в диапазоне [min, max).
+        /// Генерирует массив из n случайных чисел типа double в диапазоне [min, max].
         /// </summary>
         /// <param name="min"> минимальное число </param>
         /// <param name="max"> максимальное число </param>
@@ -41,7 +41,7 @@
         }
 
         /// <summary>
-        /// Генерирует массив из n случайных чисел типа long в диапазоне [min, max).
+        /// Генерирует массив из n случайных чисел типа long в диапазоне [min, max].
         /// </summary>
         /// <param name="min"> минимальное число </param>
         /// <param name="max"> максимальное число </param>
@@ -52,13 +52,13 @@
             long[] res = new long[n];
             for (int i = 0; i < n; i++)
             {
-                res[i] = GenerateRandomLong(min, max);
+                res[i] = GenerateRandomLong(min, max + 1);
             }
             return res;
         }
 
         /// <summary>
-        /// Генерирует случайное число типа long в диапазоне [min, max)
+        /// Генерирует случайное число типа long в диапазоне [min, max]
         /// </summary>
         /// <param name="min"> минимальное число </param>
         /// <param name="max"> максимальное число </param>
@@ -72,7 +72,7 @@
         }
 
         /// <summary>
-        /// Генерирует массив из n строк, состоящих из заглавных латинстких букв, длина которых в диапазоне [minLen, maxLen)
+        /// Генерирует массив из n строк, состоящих из заглавных латинстких букв, длина которых в диапазоне [minLen, maxLen]
         /// </summary>
         /// <param name="minLen"> минимальная длина </param>
         /// <param name="maxLen"> максимальная длина </param>
@@ -83,7 +83,7 @@
             string[] res = new string[n];
             for (int i = 0; i < n; i++)
             {
-                int len = random.Next(minLen, maxLen);
+                int len = random.Next(minLen, maxLen + 1);
                 char[] str = new char[len];
                 for (int j = 0; j < len; j++)
                 {
