@@ -48,24 +48,24 @@ namespace WinFormsSort
             {
                 Tx_Min.Text = "1";
             }
-            try
-            {
-                double.Parse(Tx_Min.Text);
-            }
-            catch (Exception)
-            {
-                string resu = "";
-                for (int i = 0; i < Tx_Min.TextLength; i++)
-                {
-                    if (Tx_Min.Text[i] >= '0' && Tx_Min.Text[i] <= '9')
-                    {
-                        resu += Tx_Min.Text[i];
-                    }
-                }
-                Tx_Min.Text = resu;
-            }
             if (Ch_Int.Checked)
             {
+                try
+                {
+                    int.Parse(Tx_Min.Text);
+                }
+                catch (Exception)
+                {
+                    string resu = "";
+                    for (int i = 0; i < Tx_Min.TextLength; i++)
+                    {
+                        if (Tx_Min.Text[i] >= '0' && Tx_Min.Text[i] <= '9')
+                        {
+                            resu += Tx_Min.Text[i];
+                        }
+                    }
+                    Tx_Min.Text = resu;
+                }
                 if (double.Parse(Tx_Min.Text) > int.MaxValue)
                 {
                     Tx_Min.Text = int.MaxValue.ToString();
@@ -77,6 +77,22 @@ namespace WinFormsSort
             }
             else if (Ch_Long.Checked)
             {
+                try
+                {
+                    long.Parse(Tx_Min.Text);
+                }
+                catch (Exception)
+                {
+                    string resu = "";
+                    for (int i = 0; i < Tx_Min.TextLength; i++)
+                    {
+                        if (Tx_Min.Text[i] >= '0' && Tx_Min.Text[i] <= '9')
+                        {
+                            resu += Tx_Min.Text[i];
+                        }
+                    }
+                    Tx_Min.Text = resu;
+                }
                 if (double.Parse(Tx_Min.Text) > long.MaxValue)
                 {
                     Tx_Min.Text = long.MaxValue.ToString();
@@ -88,6 +104,32 @@ namespace WinFormsSort
             }
             else if (Ch_Double.Checked)
             {
+                string resu;
+                try
+                {
+                    double.Parse(Tx_Min.Text);
+                }
+                catch (Exception)
+                {
+                    resu = "";
+                    for (int i = 0; i < Tx_Min.TextLength; i++)
+                    {
+                        if (Tx_Min.Text[i] >= '0' && Tx_Min.Text[i] <= '9' && ! (Tx_Min.Text[i] == ',') && ! (Tx_Min.Text[i] == '.'))
+                        {
+                            resu += Tx_Min.Text[i];
+                        }
+                    }
+                    Tx_Min.Text = resu;
+                }
+                resu = "";
+                for (int i = 0; i < Tx_Min.TextLength; i++)
+                {
+                    if ((Tx_Min.Text[i] >= '0' && Tx_Min.Text[i] <= '9' && !(Tx_Min.Text[i] == '.')) || !(Tx_Min.Text[i] == ','))
+                    {
+                        resu += Tx_Min.Text[i];
+                    }
+                }
+                Tx_Min.Text = resu;
                 if (double.Parse(Tx_Min.Text) > 1e50)
                 {
                     Tx_Min.Text = (1e50).ToString();
@@ -99,6 +141,22 @@ namespace WinFormsSort
             }
             else
             {
+                try
+                {
+                    int.Parse(Tx_Min.Text);
+                }
+                catch (Exception)
+                {
+                    string resu = "";
+                    for (int i = 0; i < Tx_Min.TextLength; i++)
+                    {
+                        if (Tx_Min.Text[i] >= '0' && Tx_Min.Text[i] <= '9')
+                        {
+                            resu += Tx_Min.Text[i];
+                        }
+                    }
+                    Tx_Min.Text = resu;
+                }
                 if (int.Parse(Tx_Min.Text) > 1000)
                 {
                     Tx_Min.Text = "1000";
@@ -117,24 +175,24 @@ namespace WinFormsSort
             {
                 Tx_Max.Text = "1";
             }
-            try
-            {
-                double.Parse(Tx_Max.Text);
-            }
-            catch (Exception)
-            {
-                string resu = "";
-                for (int i = 0; i < Tx_Max.TextLength; i++)
-                {
-                    if (Tx_Max.Text[i] >= '0' && Tx_Max.Text[i] <= '9')
-                    {
-                        resu += Tx_Max.Text[i];
-                    }
-                }
-                Tx_Max.Text = resu;
-            }
             if (Ch_Int.Checked)
             {
+                try
+                {
+                    int.Parse(Tx_Max.Text);
+                }
+                catch (Exception)
+                {
+                    string resu = "";
+                    for (int i = 0; i < Tx_Max.TextLength; i++)
+                    {
+                        if (Tx_Max.Text[i] >= '0' && Tx_Max.Text[i] <= '9')
+                        {
+                            resu += Tx_Max.Text[i];
+                        }
+                    }
+                    Tx_Max.Text = resu;
+                }
                 if (double.Parse(Tx_Max.Text) > int.MaxValue)
                 {
                     Tx_Max.Text = int.MaxValue.ToString();
@@ -146,6 +204,22 @@ namespace WinFormsSort
             }
             else if (Ch_Long.Checked)
             {
+                try
+                {
+                    long.Parse(Tx_Max.Text);
+                }
+                catch (Exception)
+                {
+                    string resu = "";
+                    for (int i = 0; i < Tx_Max.TextLength; i++)
+                    {
+                        if (Tx_Max.Text[i] >= '0' && Tx_Max.Text[i] <= '9')
+                        {
+                            resu += Tx_Max.Text[i];
+                        }
+                    }
+                    Tx_Max.Text = resu;
+                }
                 if (double.Parse(Tx_Max.Text) > long.MaxValue)
                 {
                     Tx_Max.Text = long.MaxValue.ToString();
@@ -157,6 +231,32 @@ namespace WinFormsSort
             }
             else if (Ch_Double.Checked)
             {
+                string resu;
+                try
+                {
+                    double.Parse(Tx_Max.Text);
+                }
+                catch (Exception)
+                {
+                    resu = "";
+                    for (int i = 0; i < Tx_Max.TextLength; i++)
+                    {
+                        if (Tx_Max.Text[i] >= '0' && Tx_Max.Text[i] <= '9' && !(Tx_Max.Text[i] == ',') && !(Tx_Max.Text[i] == '.'))
+                        {
+                            resu += Tx_Max.Text[i];
+                        }
+                    }
+                    Tx_Max.Text = resu;
+                }
+                resu = "";
+                for (int i = 0; i < Tx_Max.TextLength; i++)
+                {
+                    if ((Tx_Max.Text[i] >= '0' && Tx_Max.Text[i] <= '9' && !(Tx_Max.Text[i] == '.')) || !(Tx_Max.Text[i] == ','))
+                    {
+                        resu += Tx_Max.Text[i];
+                    }
+                }
+                Tx_Max.Text = resu;
                 if (double.Parse(Tx_Max.Text) > 1e50)
                 {
                     Tx_Max.Text = (1e50).ToString();
@@ -168,6 +268,22 @@ namespace WinFormsSort
             }
             else
             {
+                try
+                {
+                    int.Parse(Tx_Max.Text);
+                }
+                catch (Exception)
+                {
+                    string resu = "";
+                    for (int i = 0; i < Tx_Max.TextLength; i++)
+                    {
+                        if (Tx_Max.Text[i] >= '0' && Tx_Max.Text[i] <= '9')
+                        {
+                            resu += Tx_Max.Text[i];
+                        }
+                    }
+                    Tx_Max.Text = resu;
+                }
                 if (int.Parse(Tx_Max.Text) > 50)
                 {
                     Tx_Max.Text = "50";
@@ -224,6 +340,8 @@ namespace WinFormsSort
                 Ch_Int.Checked = true;
             }
             Update_Gen_Labels();
+            Tx_Min_TextChanged(sender,e);
+            Tx_Max_TextChanged(sender,e);
         }
 
         private void Ch_Long_CheckedChanged(object sender, EventArgs e)
@@ -239,6 +357,8 @@ namespace WinFormsSort
                 Ch_Long.Checked = true;
             }
             Update_Gen_Labels();
+            Tx_Min_TextChanged(sender, e);
+            Tx_Max_TextChanged(sender, e);
         }
 
         private void Ch_Double_CheckedChanged(object sender, EventArgs e)
@@ -254,6 +374,8 @@ namespace WinFormsSort
                 Ch_Double.Checked = true;
             }
             Update_Gen_Labels();
+            Tx_Min_TextChanged(sender, e);
+            Tx_Max_TextChanged(sender, e);
         }
 
         private void Ch_Str_CheckedChanged(object sender, EventArgs e)
@@ -269,6 +391,8 @@ namespace WinFormsSort
                 Ch_Str.Checked = true;
             }
             Update_Gen_Labels();
+            Tx_Min_TextChanged(sender, e);
+            Tx_Max_TextChanged(sender, e);
         }
         void Update_Gen_Labels()
         {
