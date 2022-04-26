@@ -127,7 +127,7 @@
             }
             if (!ascending)
             {
-                arr.Reverse();
+                Array.Reverse(arr);
             }
         }
 
@@ -158,7 +158,7 @@
             }
             if (!ascending)
             {
-                arr.Reverse();
+                Array.Reverse(arr);
             }
         }
 
@@ -173,7 +173,7 @@
             MergeSortRange(arr, 0, arr.Length - 1, ct);
             if (!ascending)
             {
-                arr.Reverse();
+                Array.Reverse(arr);
             }
         }
 
@@ -246,7 +246,7 @@
             QuickSortRange(arr, 0, arr.Length - 1, ct);
             if (!ascending)
             {
-                arr.Reverse();
+                Array.Reverse(arr);
             }
         }
 
