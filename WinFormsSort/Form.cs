@@ -563,7 +563,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 var lst = lss.ToArray();
-                Sort.QuickSort(lst, Ch_Ascend.Checked, 0, lst.Length - 1,ct);
+                Sort.QuickSort(lst, Ch_Ascend.Checked, ct);
                 if (ct.IsCancellationRequested)
                 {
                     return;
@@ -577,7 +577,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 var lst = lss.ToArray();
-                Sort.MergeSort(lst, Ch_Ascend.Checked, 0, lst.Length - 1,ct);
+                Sort.MergeSort(lst, Ch_Ascend.Checked, ct);
                 if (ct.IsCancellationRequested)
                 {
                     return;
@@ -825,7 +825,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 mergw.Start();
-                Sort.MergeSort(lss.ToArray(), Ch_Ascend.Checked, 0, lss.Count - 1,ct);
+                Sort.MergeSort(lss.ToArray(), Ch_Ascend.Checked, ct);
                 mergw.Stop();
             }
 
@@ -833,7 +833,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 quicw.Start();
-                Sort.QuickSort(lss.ToArray(), Ch_Ascend.Checked, 0, lss.Count - 1,ct);
+                Sort.QuickSort(lss.ToArray(), Ch_Ascend.Checked, ct);
                 quicw.Stop();
             }
         }
