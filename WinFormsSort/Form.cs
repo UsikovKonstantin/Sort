@@ -357,8 +357,8 @@ namespace WinFormsSort
                 Ch_Int.Checked = true;
             }
             Update_Gen_Labels();
-            Tx_Min_TextChanged(sender,e);
-            Tx_Max_TextChanged(sender,e);
+            Tx_Min_TextChanged(sender, e);
+            Tx_Max_TextChanged(sender, e);
         }
 
         private void Ch_Long_CheckedChanged(object sender, EventArgs e)
@@ -441,7 +441,7 @@ namespace WinFormsSort
         {
             Terminate_all();
             Tx_Sorted.Text = "";
-            Bt_Test.Enabled=true;
+            Bt_Test.Enabled = true;
             if (double.Parse(Tx_Min.Text) > double.Parse(Tx_Max.Text))
             {
                 (Tx_Min.Text, Tx_Max.Text) = (Tx_Max.Text, Tx_Min.Text);
@@ -540,15 +540,15 @@ namespace WinFormsSort
         }
         void Terminate_all()
         {
-            foreach (var item in threads)
+            for (int i = 0; i < threads.Count; i++)
             {
-                if (item.thr.Name == "For")
+                if (threads[i].thr.Name == "For")
                 {
-                    item.cts.Cancel();
+                    threads[i].cts.Cancel();
                 }
             }
             Thread.Sleep(10);
-            for (int i = threads.Count-1; i >= 0; i--)
+            for (int i = threads.Count - 1; i >= 0; i--)
             {
                 threads[i].cts.Cancel();
                 threads.RemoveAt(i);
@@ -563,7 +563,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 var lst = lss.ToArray();
-                Sort.QuickSort(lst, Ch_Ascend.Checked, 0, lst.Length - 1,ct);
+                Sort.QuickSort(lst, Ch_Ascend.Checked, 0, lst.Length - 1, ct);
                 if (ct.IsCancellationRequested)
                 {
                     return;
@@ -577,7 +577,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 var lst = lss.ToArray();
-                Sort.MergeSort(lst, Ch_Ascend.Checked, 0, lst.Length - 1,ct);
+                Sort.MergeSort(lst, Ch_Ascend.Checked, 0, lst.Length - 1, ct);
                 if (ct.IsCancellationRequested)
                 {
                     return;
@@ -591,7 +591,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 var lst = lss.ToArray();
-                Sort.InsertSort(lst, Ch_Ascend.Checked,ct);
+                Sort.InsertSort(lst, Ch_Ascend.Checked, ct);
                 if (ct.IsCancellationRequested)
                 {
                     return;
@@ -605,7 +605,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 var lst = lss.ToArray();
-                Sort.BubbleSort(lst, Ch_Ascend.Checked,ct);
+                Sort.BubbleSort(lst, Ch_Ascend.Checked, ct);
                 if (ct.IsCancellationRequested)
                 {
                     return;
@@ -630,7 +630,7 @@ namespace WinFormsSort
             forint.Name = "For";
             formet.Name = "For";
             forqut.Name = "For";
-            threads.Add((forbut,forbc));
+            threads.Add((forbut, forbc));
             threads.Add((forint, foric));
             threads.Add((formet, formc));
             threads.Add((forqut, forqc));
@@ -652,11 +652,12 @@ namespace WinFormsSort
             void forbub(object cto)
             {
                 CancellationToken ct = (CancellationToken)cto;
-                for (int i = 1; i <= tests; i++)
+                for (int i = 0; i <= tests;)
                 {
-                    
+
                     if (!Thr_Is_Run("bublt"))
                     {
+                        i++;
                         Thread bublt = new(bublf);
                         bublt.Name = "bublt";
                         CancellationTokenSource cts = new();
@@ -664,7 +665,7 @@ namespace WinFormsSort
                         if (i >= 2 && i % ((tests / 10) + 1) == 0)
                         {
                             string output = "";
-                            output += $"Сортировка данного массива методом пузырька в среднем требует {Math.Round(bublw.Elapsed.TotalMilliseconds / i,3)} мс {Environment.NewLine}";
+                            output += $"Сортировка данного массива методом пузырька в среднем требует {Math.Round(bublw.Elapsed.TotalMilliseconds / i, 3)} мс {Environment.NewLine}";
                             output += "Тест в процессе выполнения";
                             Invoke(() => Tx_Test_Result_Bubble.Text = output);
                         }
@@ -676,7 +677,6 @@ namespace WinFormsSort
                     }
                     else
                     {
-                        i--;
                         if (ct.IsCancellationRequested)
                         {
                             return;
@@ -691,11 +691,11 @@ namespace WinFormsSort
             void forins(object cto)
             {
                 CancellationToken ct = (CancellationToken)cto;
-                for (int i = 1; i <= tests; i++)
+                for (int i = 0; i <= tests;)
                 {
-                    
                     if (!Thr_Is_Run("inset"))
                     {
+                        i++;
                         Thread inset = new(insef);
                         inset.Name = "inset";
                         CancellationTokenSource cts = new();
@@ -703,7 +703,7 @@ namespace WinFormsSort
                         if (i >= 2 && i % ((tests / 10) + 1) == 0)
                         {
                             string output = "";
-                            output += $"Сортировка данного массива методом вставки в среднем требует {Math.Round(insew.Elapsed.TotalMilliseconds / i,3)} мс {Environment.NewLine}";
+                            output += $"Сортировка данного массива методом вставки в среднем требует {Math.Round(insew.Elapsed.TotalMilliseconds / i, 3)} мс {Environment.NewLine}";
                             output += "Тест в процессе выполнения";
                             Invoke(() => Tx_Test_Result_Insert.Text = output);
                         }
@@ -715,7 +715,6 @@ namespace WinFormsSort
                     }
                     else
                     {
-                        i--;
                         if (ct.IsCancellationRequested)
                         {
                             return;
@@ -723,18 +722,19 @@ namespace WinFormsSort
                     }
                 }
                 string outrut = "";
-                outrut += $"Сортировка данного массива методом вставки в среднем требует {Math.Round(insew.Elapsed.TotalMilliseconds / tests,3)} мс {Environment.NewLine}";
+                outrut += $"Сортировка данного массива методом вставки в среднем требует {Math.Round(insew.Elapsed.TotalMilliseconds / tests, 3)} мс {Environment.NewLine}";
                 outrut += "Тест окончен";
                 Invoke(() => Tx_Test_Result_Insert.Text = outrut);
             }
             void former(object cto)
             {
                 CancellationToken ct = (CancellationToken)cto;
-                for (int i = 1; i <= tests; i++)
+                for (int i = 0; i <= tests;)
                 {
-                    
+
                     if (!Thr_Is_Run("mergt"))
                     {
+                        i++;
                         Thread mergt = new(mergf);
                         mergt.Name = "mergt";
                         CancellationTokenSource cts = new();
@@ -742,7 +742,7 @@ namespace WinFormsSort
                         if (i >= 2 && i % ((tests / 10) + 1) == 0)
                         {
                             string output = "";
-                            output += $"Сортировка данного массива методом слияния в среднем требует {Math.Round(mergw.Elapsed.TotalMilliseconds / i,3)} мс {Environment.NewLine}";
+                            output += $"Сортировка данного массива методом слияния в среднем требует {Math.Round(mergw.Elapsed.TotalMilliseconds / i, 3)} мс {Environment.NewLine}";
                             output += "Тест в процессе выполнения";
                             Invoke(() => Tx_Test_Result_Merge.Text = output);
                         }
@@ -754,7 +754,6 @@ namespace WinFormsSort
                     }
                     else
                     {
-                        i--;
                         if (ct.IsCancellationRequested)
                         {
                             return;
@@ -762,26 +761,27 @@ namespace WinFormsSort
                     }
                 }
                 string outrut = "";
-                outrut += $"Сортировка данного массива методом слияния в среднем требует {Math.Round(mergw.Elapsed.TotalMilliseconds / tests,3)} мс {Environment.NewLine}";
+                outrut += $"Сортировка данного массива методом слияния в среднем требует {Math.Round(mergw.Elapsed.TotalMilliseconds / tests, 3)} мс {Environment.NewLine}";
                 outrut += "Тест окончен";
                 Invoke(() => Tx_Test_Result_Merge.Text = outrut);
             }
             void forqui(object cto)
             {
                 CancellationToken ct = (CancellationToken)cto;
-                for (int i = 1; i <= tests; i++)
+                for (int i = 0; i <= tests;)
                 {
-                    
+
                     if (!Thr_Is_Run("quict"))
                     {
+                        i++;
                         Thread quict = new(quicf);
                         quict.Name = "quict";
                         CancellationTokenSource cts = new();
                         threads.Add((quict, cts));
-                        if (i >= 2 && i % ((tests/10)+1) == 0)
+                        if (i >= 2 && i % ((tests / 10) + 1) == 0)
                         {
                             string output = "";
-                            output += $"Сортировка данного массива методом быстрой сортировки в среднем требует {Math.Round(quicw.Elapsed.TotalMilliseconds / i,3)} мс {Environment.NewLine}";
+                            output += $"Сортировка данного массива методом быстрой сортировки в среднем требует {Math.Round(quicw.Elapsed.TotalMilliseconds / i, 3)} мс {Environment.NewLine}";
                             output += "Тест в процессе выполнения";
                             Invoke(() => Tx_Test_Result_Quick.Text = output);
                         }
@@ -793,7 +793,6 @@ namespace WinFormsSort
                     }
                     else
                     {
-                        i--;
                         if (ct.IsCancellationRequested)
                         {
                             return;
@@ -801,7 +800,7 @@ namespace WinFormsSort
                     }
                 }
                 string outrut = "";
-                outrut += $"Сортировка данного массива методом быстрой сортировки в среднем требует {Math.Round(quicw.Elapsed.TotalMilliseconds / tests,3)} мс {Environment.NewLine}";
+                outrut += $"Сортировка данного массива методом быстрой сортировки в среднем требует {Math.Round(quicw.Elapsed.TotalMilliseconds / tests, 3)} мс {Environment.NewLine}";
                 outrut += "Тест окончен";
                 Invoke(() => Tx_Test_Result_Quick.Text = outrut);
             }
@@ -809,7 +808,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 bublw.Start();
-                Sort.BubbleSort(lss.ToArray(), Ch_Ascend.Checked,ct);
+                Sort.BubbleSort(lss.ToArray(), Ch_Ascend.Checked, ct);
                 bublw.Stop();
             }
 
@@ -817,7 +816,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 insew.Start();
-                Sort.InsertSort(lss.ToArray(), Ch_Ascend.Checked,ct);
+                Sort.InsertSort(lss.ToArray(), Ch_Ascend.Checked, ct);
                 insew.Stop();
             }
 
@@ -825,7 +824,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 mergw.Start();
-                Sort.MergeSort(lss.ToArray(), Ch_Ascend.Checked, 0, lss.Count - 1,ct);
+                Sort.MergeSort(lss.ToArray(), Ch_Ascend.Checked, 0, lss.Count - 1, ct);
                 mergw.Stop();
             }
 
@@ -833,7 +832,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 quicw.Start();
-                Sort.QuickSort(lss.ToArray(), Ch_Ascend.Checked, 0, lss.Count - 1,ct);
+                Sort.QuickSort(lss.ToArray(), Ch_Ascend.Checked, 0, lss.Count - 1, ct);
                 quicw.Stop();
             }
         }
