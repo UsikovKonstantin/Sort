@@ -71,9 +71,9 @@ namespace WinFormsSort
                     }
                     Tx_Min.Text = resu;
                 }
-                if (double.Parse(Tx_Min.Text) > int.MaxValue)
+                if (double.Parse(Tx_Min.Text) > int.MaxValue - 1)
                 {
-                    Tx_Min.Text = int.MaxValue.ToString();
+                    Tx_Min.Text = (int.MaxValue - 1).ToString();
                 }
                 if (double.Parse(Tx_Min.Text) < int.MinValue)
                 {
@@ -98,9 +98,9 @@ namespace WinFormsSort
                     }
                     Tx_Min.Text = resu;
                 }
-                if (double.Parse(Tx_Min.Text) > long.MaxValue)
+                if (double.Parse(Tx_Min.Text) > long.MaxValue - 1)
                 {
-                    Tx_Min.Text = long.MaxValue.ToString();
+                    Tx_Min.Text = (long.MaxValue - 1).ToString();
                 }
                 if (double.Parse(Tx_Min.Text) < long.MinValue)
                 {
@@ -202,9 +202,9 @@ namespace WinFormsSort
                     }
                     Tx_Max.Text = resu;
                 }
-                if (double.Parse(Tx_Max.Text) > int.MaxValue)
+                if (double.Parse(Tx_Max.Text) > int.MaxValue - 1)
                 {
-                    Tx_Max.Text = int.MaxValue.ToString();
+                    Tx_Max.Text = (int.MaxValue - 1).ToString();
                 }
                 if (double.Parse(Tx_Max.Text) < int.MinValue)
                 {
@@ -229,9 +229,9 @@ namespace WinFormsSort
                     }
                     Tx_Max.Text = resu;
                 }
-                if (double.Parse(Tx_Max.Text) > long.MaxValue)
+                if (double.Parse(Tx_Max.Text) > long.MaxValue - 1)
                 {
-                    Tx_Max.Text = long.MaxValue.ToString();
+                    Tx_Max.Text = (long.MaxValue - 1).ToString();
                 }
                 if (double.Parse(Tx_Max.Text) < long.MinValue)
                 {
@@ -563,6 +563,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 var lst = lss.ToArray();
+                Sort.QuickSort(lst, Ch_Ascend.Checked, ct);
                 Sort.QuickSort(lst, Ch_Ascend.Checked, 0, lst.Length - 1, ct);
                 if (ct.IsCancellationRequested)
                 {
@@ -577,6 +578,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 var lst = lss.ToArray();
+                Sort.MergeSort(lst, Ch_Ascend.Checked, ct);
                 Sort.MergeSort(lst, Ch_Ascend.Checked, 0, lst.Length - 1, ct);
                 if (ct.IsCancellationRequested)
                 {
@@ -824,6 +826,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 mergw.Start();
+                Sort.MergeSort(lss.ToArray(), Ch_Ascend.Checked, ct);
                 Sort.MergeSort(lss.ToArray(), Ch_Ascend.Checked, 0, lss.Count - 1, ct);
                 mergw.Stop();
             }
@@ -832,6 +835,7 @@ namespace WinFormsSort
             {
                 CancellationToken ct = (CancellationToken)cto;
                 quicw.Start();
+                Sort.QuickSort(lss.ToArray(), Ch_Ascend.Checked, ct);
                 Sort.QuickSort(lss.ToArray(), Ch_Ascend.Checked, 0, lss.Count - 1, ct);
                 quicw.Stop();
             }

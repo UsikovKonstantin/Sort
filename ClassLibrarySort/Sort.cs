@@ -114,7 +114,7 @@
                 swaps = false;
                 for (int j = 0; j < i; j++)
                 {
-                    if (ascending ? Compare(arr[j], arr[j + 1]) == 1 : Compare(arr[j], arr[j + 1]) == -1)
+                    if (Compare(arr[j], arr[j + 1]) == 1)
                     {
                         (arr[j], arr[j + 1]) = (arr[j + 1], arr[j]);
                         swaps = true;
@@ -124,6 +124,10 @@
                 {
                     break;
                 }
+            }
+            if (!ascending)
+            {
+                Array.Reverse(arr);
             }
         }
 
@@ -142,7 +146,7 @@
                     return;
                 }
                 int j = i;
-                while (ascending ? Compare(arr[j], arr[j - 1]) == -1 : Compare(arr[j], arr[j - 1]) == 1)
+                while (Compare(arr[j], arr[j - 1]) == -1)
                 {
                     (arr[j], arr[j - 1]) = (arr[j - 1], arr[j]);
                     j--;
@@ -151,6 +155,25 @@
                         break;
                     }
                 }
+            }
+            if (!ascending)
+            {
+                Array.Reverse(arr);
+            }
+        }
+
+        /// <summary>
+        /// Сортировка слиянием.
+        /// </summary>
+        /// <typeparam name="T"> тип массива </typeparam>
+        /// <param name="arr"> массив для сортировки </param>
+        /// <param name="ascending"> если по возрастанию - true, иначе - false </param>
+        public static void MergeSort<T>(T[] arr, bool ascending, CancellationToken ct)
+        {
+            MergeSortRange(arr, 0, arr.Length - 1, ct);
+            if (!ascending)
+            {
+                Array.Reverse(arr);
             }
         }
 
@@ -162,7 +185,7 @@
         /// <param name="ascending"> если по возрастанию - true, иначе - false </param>
         /// <param name="left"> левая граница сортировки (как правило, 0) </param>
         /// <param name="right"> правая граница сортировки (как правило, длина массива - 1) </param>
-        public static void MergeSort<T>(T[] arr, bool ascending, int left, int right, CancellationToken ct)
+        public static void MergeSortRange<T>(T[] arr, int left, int right, CancellationToken ct)
         {
             if (right - left > 1)
             {
@@ -174,8 +197,8 @@
                 {
                     return;
                 }
-                MergeSort(arr, ascending, a1, b1, ct);
-                MergeSort(arr, ascending, a2, b2, ct);
+                MergeSortRange(arr, a1, b1, ct);
+                MergeSortRange(arr, a2, b2, ct);
                 T[] M = new T[right - left + 1];
                 for (int k = left; k <= right; k++)
                     M[k - left] = arr[k];
@@ -183,7 +206,7 @@
                 int j = a2;
                 for (int k = left; k <= right; k++)
                     if (i <= b1 && j <= b2)
-                        if (ascending ? Compare(M[i - left], M[j - left]) == -1 : Compare(M[i - left], M[j - left]) == 1)
+                        if (Compare(M[i - left], M[j - left]) == -1)
                         {
                             arr[k] = M[i - left];
                             i++;
@@ -208,8 +231,23 @@
             }
             else
                 if (right - left == 1)
-                if (ascending ? Compare(arr[left], arr[right]) == 1 : Compare(arr[left], arr[right]) == -1)
-                    (arr[left], arr[right]) = (arr[right], arr[left]);
+                    if (Compare(arr[left], arr[right]) == 1)
+                        (arr[left], arr[right]) = (arr[right], arr[left]);
+        }
+
+        /// <summary>
+        /// Быстрая сортировка.
+        /// </summary>
+        /// <typeparam name="T"> тип массива </typeparam>
+        /// <param name="arr"> массив для сортировки </param>
+        /// <param name="ascending"> если по возрастанию - true, иначе - false </param>
+        public static void QuickSort<T>(T[] arr, bool ascending, CancellationToken ct)
+        {
+            QuickSortRange(arr, 0, arr.Length - 1, ct);
+            if (!ascending)
+            {
+                Array.Reverse(arr);
+            }
         }
 
         /// <summary>
@@ -220,16 +258,16 @@
         /// <param name="ascending"> если по возрастанию - true, иначе - false </param>
         /// <param name="left"> левая граница сортировки (как правило, 0) </param>
         /// <param name="right"> правая граница сортировки (как правило, длина массива - 1) </param>
-        public static void QuickSort<T>(T[] arr, bool ascending, int left, int right, CancellationToken ct)
+        public static void QuickSortRange<T>(T[] arr, int left, int right, CancellationToken ct)
         {
             int a = left;
             int b = right;
             T p = arr[(left + right) / 2];
             while (a < b)
             {
-                while (ascending ? Compare(arr[a], p) == -1 : Compare(arr[a], p) == 1)
+                while (Compare(arr[a], p) == -1)
                     a++;
-                while (ascending ? Compare(arr[b], p) == 1 : Compare(arr[b], p) == -1)
+                while (Compare(arr[b], p) == 1)
                     b--;
                 if (a <= b)
                 {
@@ -244,7 +282,7 @@
                 {
                     return;
                 }
-                QuickSort(arr, ascending, left, b, ct);
+                QuickSortRange(arr, left, b, ct);
             }
             if (a < right)
             {
@@ -252,7 +290,7 @@
                 {
                     return;
                 }
-                QuickSort(arr, ascending, a, right, ct);
+                QuickSortRange(arr, a, right, ct);
             }
         }
 
@@ -262,7 +300,7 @@
         /// <param name="o1"> первый объект </param>
         /// <param name="o2"> второй объект </param>
         /// <returns> 1, если o1 > o2; -1, если o1 < o2; 0, если o1 == o2 </returns>
-        public static int Compare(object o1, object o2)
+        public static int Compare<T>(T o1, T o2)
         {
             if (o1 is string)
                 return string.Compare(o1.ToString(), o2.ToString());
