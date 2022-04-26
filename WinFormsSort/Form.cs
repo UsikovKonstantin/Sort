@@ -71,9 +71,9 @@ namespace WinFormsSort
                     }
                     Tx_Min.Text = resu;
                 }
-                if (double.Parse(Tx_Min.Text) > int.MaxValue)
+                if (double.Parse(Tx_Min.Text) > int.MaxValue - 1)
                 {
-                    Tx_Min.Text = int.MaxValue.ToString();
+                    Tx_Min.Text = (int.MaxValue - 1).ToString();
                 }
                 if (double.Parse(Tx_Min.Text) < int.MinValue)
                 {
@@ -98,9 +98,9 @@ namespace WinFormsSort
                     }
                     Tx_Min.Text = resu;
                 }
-                if (double.Parse(Tx_Min.Text) > long.MaxValue)
+                if (double.Parse(Tx_Min.Text) > long.MaxValue - 1)
                 {
-                    Tx_Min.Text = long.MaxValue.ToString();
+                    Tx_Min.Text = (long.MaxValue - 1).ToString();
                 }
                 if (double.Parse(Tx_Min.Text) < long.MinValue)
                 {
@@ -202,9 +202,9 @@ namespace WinFormsSort
                     }
                     Tx_Max.Text = resu;
                 }
-                if (double.Parse(Tx_Max.Text) > int.MaxValue)
+                if (double.Parse(Tx_Max.Text) > int.MaxValue - 1)
                 {
-                    Tx_Max.Text = int.MaxValue.ToString();
+                    Tx_Max.Text = (int.MaxValue - 1).ToString();
                 }
                 if (double.Parse(Tx_Max.Text) < int.MinValue)
                 {
@@ -229,9 +229,9 @@ namespace WinFormsSort
                     }
                     Tx_Max.Text = resu;
                 }
-                if (double.Parse(Tx_Max.Text) > long.MaxValue)
+                if (double.Parse(Tx_Max.Text) > long.MaxValue - 1)
                 {
-                    Tx_Max.Text = long.MaxValue.ToString();
+                    Tx_Max.Text = (long.MaxValue - 1).ToString();
                 }
                 if (double.Parse(Tx_Max.Text) < long.MinValue)
                 {
