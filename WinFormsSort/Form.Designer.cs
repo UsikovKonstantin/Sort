@@ -31,7 +31,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Tx_Unsorted = new System.Windows.Forms.TextBox();
+            this.Tx_Unsorted = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer9 = new System.Windows.Forms.SplitContainer();
@@ -50,7 +50,7 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.Tx_Sorted = new System.Windows.Forms.TextBox();
+            this.Tx_Sorted = new System.Windows.Forms.RichTextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.Tx_Test_Result_Quick = new System.Windows.Forms.TextBox();
@@ -161,15 +161,16 @@
             // 
             // Tx_Unsorted
             // 
+            this.Tx_Unsorted.BackColor = System.Drawing.SystemColors.Control;
             this.Tx_Unsorted.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Tx_Unsorted.Location = new System.Drawing.Point(3, 19);
             this.Tx_Unsorted.MaxLength = 1073741824;
-            this.Tx_Unsorted.Multiline = true;
             this.Tx_Unsorted.Name = "Tx_Unsorted";
             this.Tx_Unsorted.ReadOnly = true;
-            this.Tx_Unsorted.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.Tx_Unsorted.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.Tx_Unsorted.Size = new System.Drawing.Size(494, 378);
-            this.Tx_Unsorted.TabIndex = 0;
+            this.Tx_Unsorted.TabIndex = 1;
+            this.Tx_Unsorted.Text = "";
             // 
             // groupBox2
             // 
@@ -418,15 +419,16 @@
             // 
             // Tx_Sorted
             // 
+            this.Tx_Sorted.BackColor = System.Drawing.SystemColors.Control;
             this.Tx_Sorted.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Tx_Sorted.Location = new System.Drawing.Point(3, 19);
             this.Tx_Sorted.MaxLength = 1073741824;
-            this.Tx_Sorted.Multiline = true;
             this.Tx_Sorted.Name = "Tx_Sorted";
             this.Tx_Sorted.ReadOnly = true;
-            this.Tx_Sorted.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.Tx_Sorted.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.Tx_Sorted.Size = new System.Drawing.Size(493, 378);
             this.Tx_Sorted.TabIndex = 1;
+            this.Tx_Sorted.Text = "";
             // 
             // groupBox4
             // 
@@ -642,7 +644,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -673,7 +674,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
@@ -702,13 +702,11 @@
         private SplitContainer splitContainer4;
         private SplitContainer splitContainer5;
         private SplitContainer splitContainer6;
-        private TextBox Tx_Unsorted;
         private GroupBox groupBox3;
         private GroupBox groupBox4;
         private Button Bt_Generate;
         private Button Bt_Test;
         private GroupBox groupBox5;
-        private TextBox Tx_Sorted;
         private TableLayoutPanel tableLayoutPanel1;
         private SplitContainer splitContainer9;
         private Label label3;
@@ -732,5 +730,7 @@
         private TextBox Tx_Test_Result_Merge;
         private TextBox Tx_Test_Result_Insert;
         private TextBox Tx_Test_Result_Bubble;
+        private RichTextBox Tx_Unsorted;
+        private RichTextBox Tx_Sorted;
     }
 }

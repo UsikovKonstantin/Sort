@@ -330,9 +330,9 @@ namespace WinFormsSort
                 }
                 Tx_Element_Count.Text = resu;
             }
-            if (int.Parse(Tx_Element_Count.Text) > 10000)
+            if (int.Parse(Tx_Element_Count.Text) > 1000000)
             {
-                Tx_Element_Count.Text = "10000";
+                Tx_Element_Count.Text = "1000000";
             }
             if (int.Parse(Tx_Element_Count.Text) < 1)
             {
@@ -568,10 +568,7 @@ namespace WinFormsSort
                 {
                     return;
                 }
-                if (Tx_Sorted.Text == "")
-                {
-                    Invoke(() => Tx_Sorted.Text = Fast_Output(lst.ToList()));
-                }
+                Invoke(() => Tx_Sorted.Text = Fast_Output(lst.ToList()));
             }
             void srm(object cto)
             {
@@ -582,10 +579,7 @@ namespace WinFormsSort
                 {
                     return;
                 }
-                if (Tx_Sorted.Text == "")
-                {
-                    Invoke(() => Tx_Sorted.Text = Fast_Output(lst.ToList()));
-                }
+                Invoke(() => Tx_Sorted.Text = Fast_Output(lst.ToList()));
             }
             void sri(object cto)
             {
@@ -596,10 +590,7 @@ namespace WinFormsSort
                 {
                     return;
                 }
-                if (Tx_Sorted.Text == "")
-                {
-                    Invoke(() => Tx_Sorted.Text = Fast_Output(lst.ToList()));
-                }
+                Invoke(() => Tx_Sorted.Text = Fast_Output(lst.ToList()));
             }
             void srb(object cto)
             {
@@ -610,10 +601,7 @@ namespace WinFormsSort
                 {
                     return;
                 }
-                if (Tx_Sorted.Text == "")
-                {
-                    Invoke(() => Tx_Sorted.Text = Fast_Output(lst.ToList()));
-                }
+                Invoke(() => Tx_Sorted.Text = Fast_Output(lst.ToList()));
             }
             CancellationTokenSource srqc = new(), srmc = new(), sric = new(), srbc = new();
             threads.Add((srqt, srqc));
