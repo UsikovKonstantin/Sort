@@ -102,7 +102,7 @@
         /// <typeparam name="T"> тип массива </typeparam>
         /// <param name="arr"> массив для сортировки </param>
         /// <param name="ascending"> если по возрастанию - true, иначе - false </param>
-        public static void BubbleSort<T>(T[] arr, bool ascending, CancellationToken ct)
+        public static void BubbleSort<T>(T[] arr, bool ascending, CancellationToken ct) where T : IComparable<T>
         {
             bool swaps;
             for (int i = arr.Length - 1; i > 0; i--)
@@ -114,7 +114,7 @@
                 swaps = false;
                 for (int j = 0; j < i; j++)
                 {
-                    if (Compare(arr[j], arr[j + 1]) == 1)
+                    if (arr[j].CompareTo(arr[j + 1]) == 1)
                     {
                         (arr[j], arr[j + 1]) = (arr[j + 1], arr[j]);
                         swaps = true;
@@ -137,7 +137,7 @@
         /// <typeparam name="T"> тип массива </typeparam>
         /// <param name="arr"> массив для сортировки </param>
         /// <param name="ascending"> если по возрастанию - true, иначе - false </param>
-        public static void InsertSort<T>(T[] arr, bool ascending, CancellationToken ct)
+        public static void InsertSort<T>(T[] arr, bool ascending, CancellationToken ct) where T : IComparable<T>
         {
             for (int i = 1; i < arr.Length; i++)
             {
@@ -146,7 +146,7 @@
                     return;
                 }
                 int j = i;
-                while (Compare(arr[j], arr[j - 1]) == -1)
+                while (arr[j].CompareTo(arr[j - 1]) == -1)
                 {
                     (arr[j], arr[j - 1]) = (arr[j - 1], arr[j]);
                     j--;
@@ -168,7 +168,7 @@
         /// <typeparam name="T"> тип массива </typeparam>
         /// <param name="arr"> массив для сортировки </param>
         /// <param name="ascending"> если по возрастанию - true, иначе - false </param>
-        public static void MergeSort<T>(T[] arr, bool ascending, CancellationToken ct)
+        public static void MergeSort<T>(T[] arr, bool ascending, CancellationToken ct) where T : IComparable<T>
         {
             MergeSortRange(arr, 0, arr.Length - 1, ct);
             if (!ascending)
@@ -185,7 +185,7 @@
         /// <param name="ascending"> если по возрастанию - true, иначе - false </param>
         /// <param name="left"> левая граница сортировки (как правило, 0) </param>
         /// <param name="right"> правая граница сортировки (как правило, длина массива - 1) </param>
-        public static void MergeSortRange<T>(T[] arr, int left, int right, CancellationToken ct)
+        public static void MergeSortRange<T>(T[] arr, int left, int right, CancellationToken ct) where T : IComparable<T>
         {
             if (right - left > 1)
             {
@@ -206,7 +206,7 @@
                 int j = a2;
                 for (int k = left; k <= right; k++)
                     if (i <= b1 && j <= b2)
-                        if (Compare(M[i - left], M[j - left]) == -1)
+                        if (M[i - left].CompareTo(M[j - left]) == -1)
                         {
                             arr[k] = M[i - left];
                             i++;
@@ -231,7 +231,7 @@
             }
             else
                 if (right - left == 1)
-                    if (Compare(arr[left], arr[right]) == 1)
+                    if (arr[left].CompareTo(arr[right]) == 1)
                         (arr[left], arr[right]) = (arr[right], arr[left]);
         }
 
@@ -241,7 +241,7 @@
         /// <typeparam name="T"> тип массива </typeparam>
         /// <param name="arr"> массив для сортировки </param>
         /// <param name="ascending"> если по возрастанию - true, иначе - false </param>
-        public static void QuickSort<T>(T[] arr, bool ascending, CancellationToken ct)
+        public static void QuickSort<T>(T[] arr, bool ascending, CancellationToken ct) where T : IComparable<T>
         {
             QuickSortRange(arr, 0, arr.Length - 1, ct);
             if (!ascending)
@@ -258,16 +258,16 @@
         /// <param name="ascending"> если по возрастанию - true, иначе - false </param>
         /// <param name="left"> левая граница сортировки (как правило, 0) </param>
         /// <param name="right"> правая граница сортировки (как правило, длина массива - 1) </param>
-        public static void QuickSortRange<T>(T[] arr, int left, int right, CancellationToken ct)
+        public static void QuickSortRange<T>(T[] arr, int left, int right, CancellationToken ct) where T : IComparable<T>
         {
             int a = left;
             int b = right;
             T p = arr[(left + right) / 2];
             while (a < b)
             {
-                while (Compare(arr[a], p) == -1)
+                while (arr[a].CompareTo(p) == -1)
                     a++;
-                while (Compare(arr[b], p) == 1)
+                while (arr[b].CompareTo(p) == 1)
                     b--;
                 if (a <= b)
                 {
@@ -292,25 +292,6 @@
                 }
                 QuickSortRange(arr, a, right, ct);
             }
-        }
-
-        /// <summary>
-        /// Сравнение двух объектов (o1 и o2).
-        /// </summary>
-        /// <param name="o1"> первый объект </param>
-        /// <param name="o2"> второй объект </param>
-        /// <returns> 1, если o1 > o2; -1, если o1 < o2; 0, если o1 == o2 </returns>
-        public static int Compare<T>(T o1, T o2)
-        {
-            if (o1 is string)
-                return string.Compare(o1.ToString(), o2.ToString());
-            else
-                if (Convert.ToDouble(o1) < Convert.ToDouble(o2))
-                return -1;
-            else if (Convert.ToDouble(o1) > Convert.ToDouble(o2))
-                return 1;
-            else
-                return 0;
         }
         #endregion
     }

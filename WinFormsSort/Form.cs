@@ -561,7 +561,7 @@ namespace WinFormsSort
             }
             threads.Clear();
         }
-        void Make_Sort<T>(List<T> lss, int tests)
+        void Make_Sort<T>(List<T> lss, int tests) where T : IComparable<T>
         {
             System.Diagnostics.Stopwatch bublw = new(), insew = new(), mergw = new(), quicw = new();
             Thread srqt = new(srq), srmt = new(srm), srit = new(sri), srbt = new(srb);
