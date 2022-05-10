@@ -441,6 +441,10 @@ namespace WinFormsSort
         {
             Terminate_all();
             Tx_Sorted.Text = "";
+            Tx_Test_Result_Bubble.Text = "";
+            Tx_Test_Result_Insert.Text = "";
+            Tx_Test_Result_Merge.Text = "";
+            Tx_Test_Result_Quick.Text = "";
             Bt_Test.Enabled = true;
             if (double.Parse(Tx_Min.Text) > double.Parse(Tx_Max.Text))
             {
@@ -476,7 +480,7 @@ namespace WinFormsSort
             {
                 str_len_estimate += lst[i].ToString().Length;
             }
-            str_len_estimate += lst.Count - 1;
+            str_len_estimate += 2 * (lst.Count - 1);
             char[] chars = new char[str_len_estimate];
             long index = 0;
             for (int i = 0; i < lst.Count; i++)
@@ -490,8 +494,10 @@ namespace WinFormsSort
                 if (i != lst.Count - 1)
                 {
                     chars[index] = ',';
+                    index++;
+                    chars[index] = ' ';
+                    index++;
                 }
-                index++;
             }
             output = new string(chars);
             return output;
@@ -501,7 +507,7 @@ namespace WinFormsSort
             Terminate_all();
             Tx_Sorted.Text = "";
             int tests = int.Parse(Tx_Test_Count.Text);
-            List<string> lss = Tx_Unsorted.Text.Split(',').ToList();
+            List<string> lss = Tx_Unsorted.Text.Split(", ").ToList();
             if (Ch_Str.Checked)
             {
                 Make_Sort(lss, tests);
